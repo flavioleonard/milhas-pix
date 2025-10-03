@@ -170,13 +170,15 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                     </Box>
                 </div>
 
-                {/* <Box className="sidebar-section total-section">
-                    <h3>Total a receber</h3>
+                <div style={{ display: "flex", border: "1px solid #E2E2E2", width: "100%" }}></div>
+
+                <div className="can-receive">
+                    <h3>Receba até: </h3>
                     <div className="total-value">
                         <span className="currency-large">R$</span>
-                        <span className="value-large">{totalValue.toFixed(2)}</span>
+                        <span className="value-large">24.325,23</span>
                     </div>
-                </Box> */}
+                </div>
             </div>
         </div>
     );

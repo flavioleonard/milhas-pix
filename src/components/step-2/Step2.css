@@ -252,3 +252,29 @@
   padding: 2px 8px;
   border-radius: 10px;
 }
+
+.can-receive {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.can-receive h3 {
+  font-weight: 500;
+}
+
+.total-value {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #12a19a1a;
+  justify-content: space-between;
+  padding-right: 18px;
+  padding-left: 18px;
+}
+
+.total-value span {
+  color: #12a19a;
+  font-size: 20px;
+}
