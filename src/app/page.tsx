@@ -14,13 +14,14 @@ import FilterInput from "@/components/inputs/filter-input/FilterInput"
 import { useState, useEffect } from "react"
 import type { Offer } from "@/types/Offer"
 import { ApiResponse } from "./api/offers/route";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [selectedFilter, setSelectedFilter] = useState<string>('');
   const [offers, setOffers] = useState<Offer[]>([]);
   const [totalOffers, setTotalOffers] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-  // const navigate = useNavigate();
+  const router = useRouter();
 
   const filterOptions = ["", "Mais recentes", "Ativos", "Em utilização"];
 
@@ -89,6 +90,7 @@ export default function Page() {
           name="Nova Oferta"
           icon={PlusIcon}
           className="offer-button"
+          onClick={() => router.push("/new-offer")}
         >
         </Button>
       </div>
