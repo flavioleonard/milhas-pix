@@ -4,9 +4,10 @@
   color: #2e3d50;
 }
 
-.box {
+.step1-container * {
   font-family: "DM Sans", sans-serif;
 }
+
 .step1-header {
   display: flex;
   align-items: center;
@@ -70,6 +71,7 @@
 }
 
 .form-group label {
+  font-weight: 500;
   width: 100%;
 }
 

@@ -6,6 +6,8 @@ import { Box } from "../box/Box";
 import Image from "next/image";
 import { Button } from "../button/Button";
 import NextIcon from "../../assets/Next.png";
+import BackIcon from "../../assets/Back.png";
+
 import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 
 interface Step2Props {
@@ -122,8 +124,25 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                             </div>}
 
                         </div>
+
                     </div>
                 </Box>
+                <div className="handle-step">
+                    <Button
+                        name="Voltar"
+                        className="back-button"
+                        icon={BackIcon}
+                        iconPosition="left"
+                        onClick={onBack}
+                    />
+                    <Button
+                        name="Prosseguir"
+                        className="next-button"
+                        icon={NextIcon}
+                        iconPosition="right"
+                        onClick={handleNext}
+                    />
+                </div>
             </div>
 
             <div className="sidebar">

@@ -4,12 +4,11 @@
   gap: 30px;
 }
 
+.container * {
+  font-family: "DM Sans", sans-serif;
+}
 .container h3 {
   font-weight: 500;
-}
-
-.box {
-  font-family: "DM Sans", sans-serif;
 }
 
 .header {
@@ -61,6 +60,7 @@
 
 .timing-options {
   display: flex;
+  white-space: nowrap;
   justify-content: space-around;
   gap: 12px;
 }
@@ -222,6 +222,22 @@
   background: #e8f5e8;
   color: #28a745;
   font-weight: 600;
+}
+.back-button {
+  color: #2e3d50;
+  background-color: #e2e2e2;
+}
+
+.handle-step {
+  display: flex;
+  padding: 16px 0px;
+  justify-content: space-between;
+}
+
+.next-button,
+.back-button {
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .position {
