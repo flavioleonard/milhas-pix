@@ -63,8 +63,7 @@ export default function Page() {
     const fetchOffers = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/offers');
-
+        const response = await fetch('/api/offers', { method: 'GET' });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
