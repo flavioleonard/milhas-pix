@@ -1,0 +1,12 @@
+.button {
+  display: flex;
+  background-color: #1e90ff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

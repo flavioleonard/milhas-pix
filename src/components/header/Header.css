@@ -1,0 +1,37 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-01);
+  background-color: var(--primary-02);
+
+  height: 6.586vh;
+  padding: 1.317vh 3.513vh;
+  z-index: 1;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 84.4%;
+}
+
+.logo-container img {
+  width: 14.05vh;
+  height: 3.513vh;
+  object-fit: contain;
+}
+
+.balance-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.952vh;
+  width: 10.209vh;
+  min-width: 7.025vh;
+  padding: 0.659vh 1.756vh;
+  border-radius: 9999px;
+  border: 1px solid #cae6fb;
+}

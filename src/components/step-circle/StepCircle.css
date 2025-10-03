@@ -1,0 +1,17 @@
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 1182px;
+  border: 0.96px solid var(--primary-02);
+  box-shadow: 0 0 0 8px rgba(30, 144, 255, 0.15);
+}
+
+.center-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 1182px;
+  background-color: var(--primary-02);
+}
