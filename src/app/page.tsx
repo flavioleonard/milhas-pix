@@ -8,15 +8,14 @@ import SearchIcon from "@/assets/Search.png"
 import ExpandIcon from "@/assets/Show.png"
 import SmilesIcon from "@/assets/Smiles.png"
 import AzulIcon from "@/assets/TudoAzul.png"
-import "./page.module.css"
+import "./page.css"
 import TextInput from "@/components/inputs/text-input/TextInput"
 import FilterInput from "@/components/inputs/filter-input/FilterInput"
 import { useState, useEffect } from "react"
-// import { OffersService } from "@/services/offersService"
 import type { Offer } from "@/types/Offer"
 import { ApiResponse } from "./api/offers/route";
 
-export const Page = () => {
+export default function Page() {
   const [selectedFilter, setSelectedFilter] = useState<string>('');
   const [offers, setOffers] = useState<Offer[]>([]);
   const [totalOffers, setTotalOffers] = useState<number>(0);
