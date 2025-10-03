@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Switch from "react-switch";
+
 import "./Step2.css";
 import { Box } from "../box/Box";
 import Image from "next/image";
@@ -20,6 +22,7 @@ interface Step2Data {
 
 export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const [paymentTiming, setPaymentTiming] = useState("imediato");
+    const [averageIsChecked, setAverageIsChecked] = useState(false);
     const [milesQuantity, setMilesQuantity] = useState(0);
     const [pricePerMile, setPricePerMile] = useState(1.8);
     const [useAverage, setUseAverage] = useState(false);
@@ -85,7 +88,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                             <div className="miles-values">
                                 <h3>Valor de a cada 1.000 milhas</h3>
                                 <Box className="value-per-mile">
-                                    <input type="text" name="miles-offers" id="miles-offers" />
+                                    <input type="text" name="miles-value" id="miles-value" />
                                     <Image
                                         src={AirPlanIcon}
                                         alt="MilhasPix Logo"
@@ -95,6 +98,28 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
 
                                 </Box>
                             </div>
+
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                            <div className="average-miles">
+                                <Switch
+                                    checked={averageIsChecked}
+                                    offColor="#E2E2E2"
+                                    onColor="#1e90ff"
+                                    uncheckedIcon={false}
+                                    checkedIcon={false}
+                                    onChange={() => setAverageIsChecked(!averageIsChecked)}
+                                />
+                                <h3>Definir média de milhas por passageiro</h3>
+                            </div>
+                            {averageIsChecked && <div style={{ display: "flex", width: "100%", gap: "10px" }}>
+                                <Box className="average-input">
+                                    <input type="text" name="average" id="average" />
+                                </Box>
+                                <Box className="tip">
+                                    <p>Melhor média para sua oferta: <span>27.800</span></p>
+                                </Box>
+                            </div>}
 
                         </div>
                     </div>
