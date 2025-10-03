@@ -27,10 +27,19 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
             : "step-connector";
     };
 
+    const handleStepClick = (stepNumber: number) => {
+        onStepClick(stepNumber);
+    };
+
+
     return (
         <div className="step-box">
             {steps.map((step, index) => (
-                <div key={step.number} className="step-container">
+                <div
+                    key={step.number}
+                    className="step-container"
+                    onClick={() => handleStepClick(step.number)}
+                >
                     <div className="step-info">
                         <div className="step-circle">
                             <StepCircle
