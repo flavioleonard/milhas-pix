@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./Step2.css";
 import { Box } from "../box/Box";
+import Image from "next/image";
 import { Button } from "../button/Button";
 import NextIcon from "../../assets/Next.png";
+import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 
 interface Step2Props {
     onNext: (data: Step2Data) => void;
@@ -66,6 +68,34 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                     </button>
                                 ))}
                             </div>
+                        </div>
+                        <div className="miles">
+                            <div className="miles-offers">
+                                <h3>Milhas ofertadas</h3>
+                                <Box className="miles-input">
+                                    <input type="text" name="miles-offers" id="miles-offers" />
+                                    <Image
+                                        src={AirPlanIcon}
+                                        alt="MilhasPix Logo"
+                                        width={20}
+                                        height={20}
+                                    />
+                                </Box>
+                            </div>
+                            <div className="miles-values">
+                                <h3>Valor de a cada 1.000 milhas</h3>
+                                <Box className="value-per-mile">
+                                    <input type="text" name="miles-offers" id="miles-offers" />
+                                    <Image
+                                        src={AirPlanIcon}
+                                        alt="MilhasPix Logo"
+                                        width={20}
+                                        height={20}
+                                    />
+
+                                </Box>
+                            </div>
+
                         </div>
                     </div>
                 </Box>
