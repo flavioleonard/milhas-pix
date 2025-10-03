@@ -10,6 +10,13 @@
   display: flex;
   align-items: flex-start;
   padding: 12px 0;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.step-container:hover {
+  background-color: rgba(30, 144, 255, 0.05);
+  border-radius: 8px;
 }
 
 .step-info {
@@ -55,11 +62,15 @@
 .step-connector {
   position: absolute;
   left: 16px;
-  top: 56px;
+  top: 44px;
   width: 2px;
-  height: 40px;
+  height: 72%;
   background: #e9ecef;
   z-index: 1;
+}
+
+.step-connector.active {
+  background: var(--primary-02);
 }
 
 .step-container:last-child .step-connector {

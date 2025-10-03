@@ -5,13 +5,35 @@
   width: 32px;
   height: 32px;
   border-radius: 1182px;
+}
+
+.circle.current {
   border: 0.96px solid var(--primary-02);
   box-shadow: 0 0 0 8px rgba(30, 144, 255, 0.15);
+}
+
+.circle.done {
+  background-color: var(--primary-02);
+}
+
+.circle.pending {
+  border: 0.96px solid #f0f0f0;
 }
 
 .center-circle {
   width: 10px;
   height: 10px;
   border-radius: 1182px;
+}
+
+.center-circle.current {
   background-color: var(--primary-02);
+}
+
+.center-circle.done {
+  background-color: #fff;
+}
+
+.center-circle.pending {
+  background-color: #f0f0f0;
 }
