@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Step1.css";
+import Image from "next/image";
 import NextIcon from "../../assets/Next.png"
 import AzulLogo from "../../assets/TudoAzulLogo.png"
 import SmilesLogo from "../../assets/SmilesLogo.png"
@@ -56,7 +57,10 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                     onClick={() => setSelectedProgram(program.id)}
                                 >
                                     <div className="program-logo">
-                                        <img src={program.logo} />
+                                        <Image src={program.logo}
+                                            alt="Logo"
+                                            width={120}
+                                            height={40} />
                                     </div>
                                 </button>
                             ))}
