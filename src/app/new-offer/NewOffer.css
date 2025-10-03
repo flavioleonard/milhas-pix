@@ -4,7 +4,6 @@
 
 .new-offer-content {
   display: flex;
-  justify-content: space-between;
   font-family: "DM Sans", sans-serif;
   gap: 30px;
 }

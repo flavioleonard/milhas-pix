@@ -59,9 +59,8 @@ export const NewOffer = () => {
                     completedSteps={completedSteps}
                     onStepClick={handleStepClick}
                 />
-                <div>
-                    {renderStepContent()}
-                </div>
+
+                {renderStepContent()}
             </div >
         </div >
     );

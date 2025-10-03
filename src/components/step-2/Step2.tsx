@@ -40,19 +40,18 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const totalValue = milesQuantity * pricePerMile;
 
     return (
-        <div>
-            <div className="step2-container">
-                <div className="step2-content">
-                    <Box className="box">
-                        <div className="step2-header">
-                            <span className="step-number">02.</span>
-                            <h2>Oferte suas milhas</h2>
-                            <div className="price-range">
-                                Faixa de preço: <span className="price-highlight">R$ 1,60 - R$ 2,00</span>
-                            </div>
+        <div className="container">
+            <div className="content">
+                <Box className="box">
+                    <div className="header">
+                        <span className="step-number">02.</span>
+                        <h2>Oferte suas milhas</h2>
+                        <div className="price-range">
+                            Faixa de preço: <span className="price-highlight">R$ 1,60 - R$ 2,00</span>
                         </div>
+                    </div>
 
-                        {/* <div className="payment-timing">
+                    {/* <div className="payment-timing">
                             <label>Quero receber</label>
                             <div className="timing-options">
                                 {timingOptions.map((option) => (
@@ -121,42 +120,41 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                 onClick={handleNext}
                             />
                         </div> */}
-                    </Box>
-                </div>
+                </Box>
+            </div>
 
-                <div className="step2-sidebar">
-                    <Box className="sidebar-section">
-                        <h3>Dica de preço</h3>
-                        <p>O preço médio atual para TudoAzul está entre R$ 1,60 e R$ 2,00 por milha.</p>
-                    </Box>
+            <div className="sidebar">
+                <Box className="sidebar-help">
+                    <h3>Média de milhas</h3>
+                    <p>Ao vender mais de 20.000 milhas, ative as Opções Avançadas para definir a média de milhas por emissão.</p>
+                </Box>
 
-                    <Box className="sidebar-section">
-                        <h3>Ranking de ofertas</h3>
-                        <div className="ranking-list">
-                            <div className="ranking-item">
-                                <span className="position">1º</span>
-                                <span>R$ 1,95</span>
-                            </div>
-                            <div className="ranking-item highlight">
-                                <span className="position">2º</span>
-                                <span>R$ 1,80</span>
-                                <span className="you-label">VOCÊ</span>
-                            </div>
-                            <div className="ranking-item">
-                                <span className="position">3º</span>
-                                <span>R$ 1,75</span>
-                            </div>
+                <div className="sidebar-ranking">
+                    <h3>Ranking de ofertas</h3>
+                    <Box className="ranking-section">
+                        <div className="ranking-item">
+                            <span className="position">1º</span>
+                            <span>R$ 1,95</span>
                         </div>
-                    </Box>
-
-                    <Box className="sidebar-section total-section">
-                        <h3>Total a receber</h3>
-                        <div className="total-value">
-                            <span className="currency-large">R$</span>
-                            <span className="value-large">{totalValue.toFixed(2)}</span>
+                        <div className="ranking-item highlight">
+                            <span className="position">2º</span>
+                            <span>R$ 1,80</span>
+                            <span className="you-label">VOCÊ</span>
+                        </div>
+                        <div className="ranking-item">
+                            <span className="position">3º</span>
+                            <span>R$ 1,75</span>
                         </div>
                     </Box>
                 </div>
+
+                {/* <Box className="sidebar-section total-section">
+                    <h3>Total a receber</h3>
+                    <div className="total-value">
+                        <span className="currency-large">R$</span>
+                        <span className="value-large">{totalValue.toFixed(2)}</span>
+                    </div>
+                </Box> */}
             </div>
         </div>
     );
