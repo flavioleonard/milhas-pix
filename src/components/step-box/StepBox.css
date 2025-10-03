@@ -55,11 +55,15 @@
 .step-connector {
   position: absolute;
   left: 16px;
-  top: 56px;
+  top: 44px;
   width: 2px;
-  height: 40px;
+  height: 72%;
   background: #e9ecef;
   z-index: 1;
+}
+
+.step-connector.active {
+  background: var(--primary-02);
 }
 
 .step-container:last-child .step-connector {

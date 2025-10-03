@@ -1,11 +1,6 @@
 import { StepCircle } from "../step-circle/StepCircle";
 import "./StepBox.css";
 
-interface Step {
-    number: number;
-    title: string;
-    description: string;
-}
 
 interface StepBoxProps {
     currentStep: number;
@@ -20,6 +15,17 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
         { number: 3, title: "Passo 3", description: "Insira os dados do programa" },
         { number: 4, title: "Passo 4", description: "Pedido finalizado" }
     ];
+
+    const isConnectorActive = (stepNumber: number) => {
+        const nextStepNumber = stepNumber;
+        return currentStep > nextStepNumber || completedSteps.includes(nextStepNumber);
+    };
+
+    const getConnectorClass = (stepNumber: number) => {
+        return isConnectorActive(stepNumber)
+            ? "step-connector active"
+            : "step-connector";
+    };
 
     return (
         <div className="step-box">
@@ -37,7 +43,9 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
                             <p className="step-description">{step.description}</p>
                         </div>
                     </div>
-                    {index < steps.length - 1 && <div className="step-connector"></div>}
+                    {index < steps.length - 1 && (
+                        <div className={getConnectorClass(step.number)}></div>
+                    )}
                 </div>
             ))}
         </div>
