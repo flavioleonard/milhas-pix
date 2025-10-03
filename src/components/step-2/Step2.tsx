@@ -23,9 +23,10 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const [useAverage, setUseAverage] = useState(false);
 
     const timingOptions = [
-        { id: "imediato", label: "Pagamento imediato" },
-        { id: "confirmacao", label: "Após confirmação" },
-        { id: "7dias", label: "Em até 7 dias" }
+        { id: "Imediato", label: "Pagamento imediato" },
+        { id: "2dias", label: "Após confirmação" },
+        { id: "7dias", label: "Em até 7 dias" },
+        { id: "Depois do voo", label: "Depois do voo" }
     ];
 
     const handleNext = () => {
@@ -51,8 +52,9 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                         </div>
                     </div>
 
-                    {/* <div className="payment-timing">
-                            <label>Quero receber</label>
+                    <div className="payment-section">
+                        <div className="want-receive">
+                            <h3>Quero receber</h3>
                             <div className="timing-options">
                                 {timingOptions.map((option) => (
                                     <button
@@ -65,61 +67,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                 ))}
                             </div>
                         </div>
-
-                        <div className="miles-pricing">
-                            <div className="miles-input">
-                                <label>Quantidade de milhas</label>
-                                <div className="input-with-icon">
-                                    <input
-                                        type="number"
-                                        value={milesQuantity || ''}
-                                        onChange={(e) => setMilesQuantity(Number(e.target.value))}
-                                        className="miles-field"
-                                        placeholder="0"
-                                    />
-                                    <span className="miles-icon">✈️</span>
-                                </div>
-                            </div>
-
-                            <div className="price-input">
-                                <label>Preço por milha</label>
-                                <div className="price-field-container">
-                                    <span className="currency">R$</span>
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        value={pricePerMile}
-                                        onChange={(e) => setPricePerMile(Number(e.target.value))}
-                                        className="price-field"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="average-toggle">
-                            <label className="toggle-container">
-                                <input
-                                    type="checkbox"
-                                    checked={useAverage}
-                                    onChange={(e) => setUseAverage(e.target.checked)}
-                                />
-                                <span className="toggle-slider"></span>
-                                Usar preço médio do mercado
-                            </label>
-                        </div>
-
-                        <div className="action-buttons">
-                            <button className="btn-back" onClick={onBack}>
-                                Voltar
-                            </button>
-                            <Button
-                                name="Prosseguir"
-                                className="btn-next"
-                                icon={NextIcon}
-                                iconPosition="right"
-                                onClick={handleNext}
-                            />
-                        </div> */}
+                    </div>
                 </Box>
             </div>
 

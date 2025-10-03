@@ -38,21 +38,31 @@
   font-weight: 600;
 }
 
-.payment-timing {
-  margin-bottom: 30px;
+.payment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
 }
 
-.payment-timing label {
-  display: block;
-  margin-bottom: 16px;
+.want-receive {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.want-receive h3 {
+  line-height: 130%;
   font-weight: 500;
-  color: #333;
+}
+
+.payment-section label {
 }
 
 .timing-options {
   display: flex;
+  justify-content: space-around;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
 .timing-btn {
@@ -75,24 +85,12 @@
   border-color: #007bff;
 }
 
-.miles-pricing {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.miles-input label,
 .price-input label {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
   color: #333;
   font-size: 14px;
-}
-
-.input-with-icon {
-  position: relative;
 }
 
 .miles-field {
