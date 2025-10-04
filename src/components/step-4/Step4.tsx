@@ -1,4 +1,7 @@
-import "./Step4.css";
+import { Box } from "../box/Box";
+import styles from "./Step4.module.css";
+import Image from "next/image";
+import CongratulationsIcon from "../../assets/Congratulations.svg"
 
 interface Step4Props {
     onViewOffers: () => void;
@@ -6,24 +9,24 @@ interface Step4Props {
 
 export const Step4 = ({ onViewOffers }: Step4Props) => {
     return (
-        <div className="step4-container">
-            <div className="step4-content">
-                <div className="success-icon">
-                    🎉
-                </div>
+        <Box className={styles['container']}>
 
-                <h1 className="success-title">
-                    Ordem de venda criada com sucesso!
-                </h1>
-
-                <p className="success-message">
-                    Agora é só aguardar — assim que suas milhas forem vendidas, o valor será transferido direto para sua conta via Pix.
-                </p>
-
-                <button className="btn-view-offers" onClick={onViewOffers}>
-                    Ver minhas ofertas →
-                </button>
+            <div className={styles['success-icon']}>
+                <Image src={CongratulationsIcon} width={60} height={60} alt="Parabens" />
             </div>
-        </div>
+
+            <h1 className={styles['success-title']}>
+                Ordem de venda criada com sucesso!
+            </h1>
+
+            <p className={styles['success-message']}>
+                Agora é só aguardar — assim que suas milhas forem vendidas, o valor será transferido direto para sua conta via Pix.
+            </p>
+
+            <button className={styles['btn-view-offers']} onClick={onViewOffers}>
+                Ver minhas ofertas →
+            </button>
+
+        </Box>
     );
 };
