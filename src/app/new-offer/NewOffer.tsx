@@ -60,7 +60,7 @@ export const NewOffer = () => {
             case 3:
                 return <Step3 onNext={handleStep3Next} onBack={handleStep3Back} />;
             case 4:
-                return <Step4 onViewOffers={() => router.push('./')} />;
+                return <Step4 onViewOffers={() => router.push('./offer-list')} />;
             default:
                 return <div>Passo não encontrado</div>;
         }
