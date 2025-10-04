@@ -80,6 +80,8 @@
 
 .form-input {
   display: flex;
+  font-family: "DM MONO";
+
   justify-content: space-between;
   padding: 10px 14px 10px 16px;
   border: 1px solid #e9ecef;

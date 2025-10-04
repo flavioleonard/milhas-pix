@@ -24,6 +24,8 @@
 
 .react-tel-input .form-control {
   display: flex !important;
+  font-family: "DM MONO" !important;
+
   gap: 8px !important;
   position: relative;
   font-size: 14px;
