@@ -162,6 +162,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
+  height: fit-content;
   border-radius: 8px;
   gap: 8px;
   padding: 12px;
