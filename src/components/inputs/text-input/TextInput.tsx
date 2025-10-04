@@ -1,5 +1,5 @@
 import React from 'react';
-import './TextInput.css';
+import styles from './TextInput.module.css';
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     className?: string;
@@ -14,13 +14,13 @@ const TextInput: React.FC<TextInputProps> = ({
     ...props
 }) => {
     return (
-        <div className={`input-container ${className}`}>
+        <div className={`${styles['input-container']} ${className}`}>
             <input
-                className="text-input"
+                className={styles['text-input']}
                 placeholder={placeholder}
                 {...props}
             />
-            {icon && <img src={icon} alt="" className="input-icon" />}
+            {icon && <img src={icon} alt="" className={styles['input-icon']} />}
         </div>
     );
 };

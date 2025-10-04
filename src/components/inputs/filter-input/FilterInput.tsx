@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './FilterInput.css';
+import styles from './FilterInput.module.css';
 
 interface FilterInputProps extends React.HTMLAttributes<HTMLDivElement> {
     placeholder?: string;
@@ -56,22 +56,22 @@ const FilterInput: React.FC<FilterInputProps> = ({
 
     const renderIcon = () => {
         if (typeof icon === 'string') {
-            return <img src={icon} alt="" className="filter-icon-img" />;
+            return <img src={icon} alt="" className={styles['filter-icon-img']} />;
         }
         return icon;
     };
 
 
     return (
-        <div className="filter-input-wrapper" ref={dropdownRef}>
+        <div className={styles['filter-input-wrapper']} ref={dropdownRef}>
             <div
-                className={`filter-input ${className} ${isOpen ? 'filter-input-open' : ''}`}
+                className={`${styles['filter-input']} ${className} ${isOpen ? styles['filter-input-open'] : ''}`}
                 onClick={handleClick}
                 {...props}
             >
-                <span className="filter-placeholder">{displayText}</span>
+                <span className={styles['filter-placeholder']}>{displayText}</span>
                 {icon && (
-                    <div className="filter-icon" onClick={(e) => {
+                    <div className={styles['filter-icon']} onClick={(e) => {
                         e.stopPropagation();
                         onIconClick?.();
                     }}>
@@ -80,11 +80,11 @@ const FilterInput: React.FC<FilterInputProps> = ({
                 )}
             </div>
             {isOpen && filters.length > 0 && (
-                <div className="filter-dropdown">
+                <div className={styles['filter-dropdown']}>
                     {filters.map((filter, index) => (
                         <div
                             key={index}
-                            className={`filter-option ${selectedFilter === filter ? 'filter-option-selected' : ''}`}
+                            className={`${styles['filter-option']} ${selectedFilter === filter ? styles['filter-option-selected'] : ''}`}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleFilterSelect(filter);

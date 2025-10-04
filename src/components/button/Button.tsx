@@ -1,4 +1,4 @@
-import './Button.css';
+import styles from './Button.module.css';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
 
@@ -36,7 +36,7 @@ export const Button = ({
 
     return (
         <button
-            className={`button ${className}`}
+            className={`${styles.button} ${className}`}
             onClick={onClick}
             type={type}
             disabled={disabled}

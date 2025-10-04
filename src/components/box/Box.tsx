@@ -1,4 +1,4 @@
-import './box.css';
+import styles from './Box.module.css'
 
 interface BoxProps {
     children: React.ReactNode;
@@ -7,7 +7,7 @@ interface BoxProps {
 
 export const Box = ({ children, className = '' }: BoxProps) => {
     return (
-        <div className={`box ${className}`}>
+        <div className={`${styles.box} ${className}`}>
             {children}
         </div>
     );

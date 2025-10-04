@@ -8,7 +8,7 @@ import SearchIcon from "@/assets/Search.png"
 import ExpandIcon from "@/assets/Show.png"
 import SmilesIcon from "@/assets/Smiles.png"
 import AzulIcon from "@/assets/TudoAzul.png"
-import "./page.css"
+import styles from "./page.module.css"
 import TextInput from "@/components/inputs/text-input/TextInput"
 import FilterInput from "@/components/inputs/filter-input/FilterInput"
 import { useState, useEffect } from "react"
@@ -37,12 +37,12 @@ export default function Page() {
     switch (status.toLowerCase()) {
       case 'ativo':
       case 'ativa':
-        return 'status-active';
+        return styles['status-active'];
       case 'em utilizacao':
       case 'em utilização':
-        return 'status-in-use';
+        return styles['status-in-use'];
       default:
-        return 'status-inactive';
+        return styles['status-inactive'];
     }
   };
 
@@ -82,29 +82,29 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="header-offers">
-        <span className="page-title">Minhas ofertas</span>
+    <div className={styles.container}>
+      <div className={styles['header-offers']}>
+        <span className={styles['page-title']}>Minhas ofertas</span>
         <Button
           name="Nova Oferta"
           icon={PlusIcon}
-          className="offer-button"
+          className={styles['offer-button']}
           onClick={() => router.push("/new-offer")}
         >
         </Button>
       </div>
-      <Box className="box">
-        <div className="box-header">
-          <span className="offers-title">Todas ofertas ({totalOffers})</span>
-          <div className="inputs">
+      <Box className={styles.box}>
+        <div className={styles['box-header']}>
+          <span className={styles['offers-title']}>Todas ofertas ({totalOffers})</span>
+          <div className={styles.inputs}>
             <TextInput
               placeholder="Login de acesso, ID da oferta..."
-              className="offers-search-input"
+              className={styles['offers-search-input']}
               icon={SearchIcon.src}
             />
             <FilterInput
               placeholder="Filtros"
-              className="offers-filters-input"
+              className={styles['offers-filters-input']}
               icon={ExpandIcon.src}
               filters={filterOptions}
               onFilterSelect={handleFilterSelect}
@@ -112,11 +112,11 @@ export default function Page() {
             />
           </div>
         </div>
-        <div className="box-data">
+        <div className={styles['box-data']}>
           {loading ? (
-            <div className="loading">Carregando ofertas...</div>
+            <div className={styles.loading}>Carregando ofertas...</div>
           ) : (
-            <table className="offers-table">
+            <table className={styles['offers-table']}>
               <thead>
                 <tr>
                   <th>Programa</th>
@@ -131,20 +131,20 @@ export default function Page() {
                 {offers.map((offer) => (
                   <tr key={offer.offerId}>
                     <td>
-                      <div className="program-cell">
+                      <div className={styles['program-cell']}>
                         <img
                           src={getProgramIcon(offer.loyaltyProgram).src}
                           alt={offer.loyaltyProgram}
-                          className="program-icon"
+                          className={styles['program-icon']}
                         />
-                        <div className="program-info">
-                          <span className="program-name">{offer.loyaltyProgram}</span>
-                          <span className="program-type">{offer.offerType}</span>
+                        <div className={styles['program-info']}>
+                          <span className={styles['program-name']}>{offer.loyaltyProgram}</span>
+                          <span className={styles['program-type']}>{offer.offerType}</span>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <span className={`status-badge ${getStatusClass(offer.offerStatus)}`}>
+                      <span className={`${styles['status-badge']} ${getStatusClass(offer.offerStatus)}`}>
                         ● {offer.offerStatus}
                       </span>
                     </td>
