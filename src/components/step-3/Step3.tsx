@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styles from "./Step3.module.css";
 import { Box } from "../box/Box";
+import { IMaskInput } from 'react-imask';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 interface Step3Props {
     onNext: (data: Step3Data) => void;
@@ -15,10 +18,10 @@ interface Step3Data {
 }
 
 export const Step3 = ({ onNext, onBack }: Step3Props) => {
-    const [cpf, setCpf] = useState("431.140.231-12");
+    const [cpf, setCpf] = useState("000.000.000-00");
     const [loginAccess, setLoginAccess] = useState("1283124124");
     const [accessPassword, setAccessPassword] = useState("1877");
-    const [authPhone, setAuthPhone] = useState("+55 🇧🇷 (19)98277-3123");
+    const [authPhone, setAuthPhone] = useState("5511111111111");
 
     const handleNext = () => {
         onNext({
@@ -46,12 +49,12 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                             <div className={styles['cpf-form']}>
                                 <label>CPF do Titular</label>
                                 <div className={styles['input-with-icon']}>
-                                    <input
-                                        type="text"
+                                    <IMaskInput
+                                        mask="000.000.000-00"
                                         value={cpf}
-                                        onChange={(e) => setCpf(e.target.value)}
-                                        className={styles['form-input']}
+                                        onAccept={(value: string) => setCpf(value)}
                                         placeholder="000.000.000-00"
+                                        className={styles['form-input']}
                                     />
                                     <span className={styles['input-icon']}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +69,6 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-
                                     </span>
                                 </div>
                             </div>
@@ -80,9 +82,7 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                                     placeholder="Digite seu login"
                                 />
                             </div>
-
                         </div>
-
 
                         <div className={styles['form-group-2']}>
                             <div className={styles['password-form']}>
@@ -113,12 +113,15 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                             <div className={styles['phone-form']}>
                                 <label>Telefone para autenticação</label>
                                 <div className={styles['input-with-icon']}>
-                                    <input
-                                        type="text"
+                                    <PhoneInput
+                                        country={'br'}
                                         value={authPhone}
-                                        onChange={(e) => setAuthPhone(e.target.value)}
-                                        className={styles['form-input']}
-                                        placeholder="+55 (00) 00000-0000"
+                                        onChange={(phone: string) => setAuthPhone(phone)}
+                                        enableSearch={true}
+                                        searchPlaceholder="Buscar país..."
+                                        placeholder="Digite seu telefone"
+                                        countryCodeEditable={false}
+                                        preferredCountries={['br', 'us', 'ar', 'cl', 'co', 'mx']}
                                     />
                                     <span className={styles['input-icon']}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.77148 22.0431L3.19857 16.8325C2.31839 15.3076 1.85532 13.5776 1.85588 11.8054C1.85814 6.26096 6.37018 1.75024 11.9148 1.75024C14.6054 1.75156 17.1308 2.79866 19.0302 4.69936C20.9291 6.60007 21.9746 9.12643 21.9737 11.8135C21.9712 17.3575 17.4585 21.869 11.9148 21.869C11.9144 21.869 11.9152 21.869 11.9148 21.869H11.9105C10.2272 21.8683 8.57306 21.4461 7.10378 20.6448L1.77148 22.0431Z" fill="white" />

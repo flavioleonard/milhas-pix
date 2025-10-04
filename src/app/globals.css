@@ -14,3 +14,29 @@
 
   --plus-jakarta: "Plus Jakarta Sans", sans-serif;
 }
+.react-tel-input .flag-dropdown {
+  border: none !important;
+  background-color: #f8f9fa !important;
+  border-radius: 40px !important;
+  padding: 8px !important;
+  margin: 2px;
+}
+
+.react-tel-input .form-control {
+  display: flex !important;
+  font-family: "DM MONO" !important;
+
+  gap: 8px !important;
+  position: relative;
+  font-size: 14px;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0;
+  padding: 10px 10px 10px 60px !important;
+  border: 1px solid #e2e2e2 !important;
+  border-radius: 44px !important;
+  line-height: 0px !important;
+  height: 100% !important;
+  width: 100% !important;
+  outline: none;
+}

@@ -66,6 +66,7 @@
 .password-form,
 .phone-form {
   display: flex;
+  justify-content: center;
   width: 100%;
   flex-direction: column;
   gap: 4px;
@@ -79,6 +80,8 @@
 
 .form-input {
   display: flex;
+  font-family: "DM MONO";
+
   justify-content: space-between;
   padding: 10px 14px 10px 16px;
   border: 1px solid #e9ecef;
@@ -161,6 +164,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
+  height: fit-content;
   border-radius: 8px;
   gap: 8px;
   padding: 12px;
