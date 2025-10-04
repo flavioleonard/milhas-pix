@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Switch from "react-switch";
 
 import styles from "./Step2.module.css";
@@ -7,8 +7,9 @@ import Image from "next/image";
 import { Button } from "../button/Button";
 import NextIcon from "../../assets/Next.png";
 import BackIcon from "../../assets/Back.png";
-
 import AirPlanIcon from "../../assets/AirplaneInFlight.png"
+import { useDebounce } from "../../hooks/useDebounce";
+import { formatCurrency, parseCurrencyToNumber } from "../../utils/formatters";
 
 interface Step2Props {
     onNext: (data: Step2Data) => void;
@@ -22,12 +23,23 @@ interface Step2Data {
     useAverage: boolean;
 }
 
+interface RankingItem {
+    mile_value: number;
+    description: string;
+    position: number;
+}
+
 export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const [paymentTiming, setPaymentTiming] = useState("imediato");
     const [averageIsChecked, setAverageIsChecked] = useState(false);
     const [milesQuantity, setMilesQuantity] = useState(0);
     const [pricePerMile, setPricePerMile] = useState(1.8);
+    const [pricePerMileInput, setPricePerMileInput] = useState("R$ 1,80");
     const [useAverage, setUseAverage] = useState(false);
+    const [ranking, setRanking] = useState<RankingItem[]>([]);
+    const [isLoadingRanking, setIsLoadingRanking] = useState(false);
+
+    const debouncedPricePerMile = useDebounce(pricePerMile, 500);
 
     const timingOptions = [
         { id: "Imediato", label: "Pagamento imediato" },
@@ -35,6 +47,55 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         { id: "7dias", label: "Em até 7 dias" },
         { id: "Depois do voo", label: "Depois do voo" }
     ];
+
+    const fetchRanking = async (mileValue: number) => {
+        if (mileValue <= 0) {
+            setRanking([]);
+            return;
+        }
+
+        setIsLoadingRanking(true);
+        try {
+            const response = await fetch(`/api/ranking?mile_value=${mileValue.toFixed(2)}`);
+            if (response.ok) {
+                const data: RankingItem[] = await response.json();
+                setRanking(data);
+            }
+        } catch (error) {
+            console.error("Erro ao buscar ranking:", error);
+            setRanking([]);
+
+            try {
+                const fallbackResponse = await fetch(`/api/ranking?mile_value=${mileValue.toFixed(2)}`);
+                if (fallbackResponse.ok) {
+                    const fallbackData: RankingItem[] = await fallbackResponse.json();
+                    setRanking(fallbackData);
+                }
+            } catch (fallbackError) {
+                console.error("Erro no fallback:", fallbackError);
+            }
+        } finally {
+            setIsLoadingRanking(false);
+        }
+    };
+
+    useEffect(() => {
+        if (debouncedPricePerMile > 0) {
+            fetchRanking(debouncedPricePerMile);
+        } else {
+            setRanking([]);
+        }
+    }, [debouncedPricePerMile]);
+
+
+    const handlePricePerMileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        const formattedValue = formatCurrency(value);
+        setPricePerMileInput(formattedValue);
+
+        const numericValue = parseCurrencyToNumber(formattedValue);
+        setPricePerMile(numericValue);
+    };
 
     const handleNext = () => {
         onNext({
@@ -78,7 +139,14 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                             <div className={styles['miles-offers']}>
                                 <h3>Milhas ofertadas</h3>
                                 <Box className={styles['miles-input']}>
-                                    <input type="text" name="miles-offers" id="miles-offers" />
+                                    <input
+                                        type="text"
+                                        name="miles-offers"
+                                        id="miles-offers"
+                                        value={milesQuantity || ''}
+                                        onChange={(e) => setMilesQuantity(Number(e.target.value.replace(/\D/g, '')))}
+                                        placeholder="0"
+                                    />
                                     <Image
                                         src={AirPlanIcon}
                                         alt="MilhasPix Logo"
@@ -90,17 +158,22 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                             <div className={styles['miles-values']}>
                                 <h3>Valor de a cada 1.000 milhas</h3>
                                 <Box className={styles['value-per-mile']}>
-                                    <input type="text" name="miles-value" id="miles-value" />
+                                    <input
+                                        type="text"
+                                        name="miles-value"
+                                        id="miles-value"
+                                        value={pricePerMileInput}
+                                        onChange={handlePricePerMileChange}
+                                        placeholder="R$ 0,00"
+                                    />
                                     <Image
                                         src={AirPlanIcon}
                                         alt="MilhasPix Logo"
                                         width={20}
                                         height={20}
                                     />
-
                                 </Box>
                             </div>
-
                         </div>
                         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                             <div className={styles['average-miles']}>
@@ -122,9 +195,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                     <p>Melhor média para sua oferta: <span>27.800</span></p>
                                 </Box>
                             </div>}
-
                         </div>
-
                     </div>
                 </Box>
                 <div className={styles['handle-step']}>
@@ -154,19 +225,28 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                 <div className={styles['sidebar-ranking']}>
                     <h3>Ranking de ofertas</h3>
                     <Box className={styles['ranking-section']}>
-                        <div className={styles['ranking-item']}>
-                            <span className={styles.position}>1º</span>
-                            <span>R$ 1,95</span>
-                        </div>
-                        <div className={`${styles['ranking-item']} ${styles.highlight}`}>
-                            <span className={styles.position}>2º</span>
-                            <span>R$ 1,80</span>
-                            <span className={styles['you-label']}>VOCÊ</span>
-                        </div>
-                        <div className={styles['ranking-item']}>
-                            <span className={styles.position}>3º</span>
-                            <span>R$ 1,75</span>
-                        </div>
+                        {isLoadingRanking ? (
+                            <div className={styles['ranking-item']}>
+                                <span>Carregando...</span>
+                            </div>
+                        ) : ranking.length > 0 ? (
+                            ranking.map((item) => (
+                                <div
+                                    key={item.position}
+                                    className={`${styles['ranking-item']} ${item.description === 'essa será sua posição' ? styles.highlight : ''}`}
+                                >
+                                    <span className={styles.position}>{item.position}º</span>
+                                    <span>R$ {item.mile_value.toFixed(2).replace('.', ',')}</span>
+                                    {item.description === 'essa será sua posição' && (
+                                        <span className={styles['you-label']}>VOCÊ</span>
+                                    )}
+                                </div>
+                            ))
+                        ) : (
+                            <div className={styles['ranking-item']}>
+                                <span>Digite um valor para ver o ranking</span>
+                            </div>
+                        )}
                     </Box>
                 </div>
 
@@ -176,7 +256,9 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                     <h3>Receba até: </h3>
                     <div className={styles['total-value']}>
                         <span className={styles['currency-large']}>R$</span>
-                        <span className={styles['value-large']}>24.325,23</span>
+                        <span className={styles['value-large']}>
+                            {totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </span>
                     </div>
                 </div>
             </div>
