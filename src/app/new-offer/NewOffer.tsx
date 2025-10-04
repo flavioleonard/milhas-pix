@@ -32,7 +32,7 @@ export const NewOffer = () => {
     };
 
     const handleStep3Next = (data: any) => {
-        completeStep(2);
+        completeStep(3);
         setCurrentStep(4);
     }
 

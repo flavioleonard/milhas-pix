@@ -55,10 +55,10 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                                     />
                                     <span className={styles['input-icon']}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_4193_317)">
-                                                <path d="M4.98438 15.5758C5.45462 14.6496 6.17216 13.8716 7.05745 13.3282C7.94275 12.7848 8.96123 12.4972 10 12.4972C11.0388 12.4972 12.0572 12.7848 12.9425 13.3282C13.8278 13.8716 14.5454 14.6496 15.0156 15.5758" stroke="#1E90FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z" stroke="#1E90FF" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M10 12.5C11.7259 12.5 13.125 11.1009 13.125 9.375C13.125 7.64911 11.7259 6.25 10 6.25C8.27411 6.25 6.875 7.64911 6.875 9.375C6.875 11.1009 8.27411 12.5 10 12.5Z" stroke="#1E90FF" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <g clipPath="url(#clip0_4193_317)">
+                                                <path d="M4.98438 15.5758C5.45462 14.6496 6.17216 13.8716 7.05745 13.3282C7.94275 12.7848 8.96123 12.4972 10 12.4972C11.0388 12.4972 12.0572 12.7848 12.9425 13.3282C13.8278 13.8716 14.5454 14.6496 15.0156 15.5758" stroke="#1E90FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z" stroke="#1E90FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M10 12.5C11.7259 12.5 13.125 11.1009 13.125 9.375C13.125 7.64911 11.7259 6.25 10 6.25C8.27411 6.25 6.875 7.64911 6.875 9.375C6.875 11.1009 8.27411 12.5 10 12.5Z" stroke="#1E90FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </g>
                                             <defs>
                                                 <clipPath id="clip0_4193_317">
@@ -97,9 +97,9 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                                     />
                                     <span className={styles['input-icon']}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_4193_326)">
-                                                <path d="M16.25 6.875H3.75C3.40482 6.875 3.125 7.15482 3.125 7.5V16.25C3.125 16.5952 3.40482 16.875 3.75 16.875H16.25C16.5952 16.875 16.875 16.5952 16.875 16.25V7.5C16.875 7.15482 16.5952 6.875 16.25 6.875Z" stroke="#1E90FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M6.875 6.875V4.375C6.875 3.5462 7.20424 2.75134 7.79029 2.16529C8.37634 1.57924 9.1712 1.25 10 1.25C10.8288 1.25 11.6237 1.57924 12.2097 2.16529C12.7958 2.75134 13.125 3.5462 13.125 4.375V6.875" stroke="#1E90FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <g clipPath="url(#clip0_4193_326)">
+                                                <path d="M16.25 6.875H3.75C3.40482 6.875 3.125 7.15482 3.125 7.5V16.25C3.125 16.5952 3.40482 16.875 3.75 16.875H16.25C16.5952 16.875 16.875 16.5952 16.875 16.25V7.5C16.875 7.15482 16.5952 6.875 16.25 6.875Z" stroke="#1E90FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M6.875 6.875V4.375C6.875 3.5462 7.20424 2.75134 7.79029 2.16529C8.37634 1.57924 9.1712 1.25 10 1.25C10.8288 1.25 11.6237 1.57924 12.2097 2.16529C12.7958 2.75134 13.125 3.5462 13.125 4.375V6.875" stroke="#1E90FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </g>
                                             <defs>
                                                 <clipPath id="clip0_4193_326">
@@ -142,12 +142,10 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                 </div>
             </div>
 
-            <div className={styles['sidebar']}>
-                <div className={styles['sidebar-info']}>
-                    <h3>Dados da Conta</h3>
-                    <p>Por favor, insira os dados da conta que deseja cadastrar e verifique se estão corretos.</p>
-                </div>
-            </div>
+            <Box className={styles['sidebar']}>
+                <h3>Dados da Conta</h3>
+                <p>Por favor, insira os dados da conta que deseja cadastrar e verifique se estão corretos.</p>
+            </Box>
         </div>
     );
 };

@@ -159,28 +159,24 @@
 }
 
 .sidebar {
-  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  gap: 8px;
+  padding: 12px;
 }
 
-.sidebar-info {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #007bff;
-}
-
-.sidebar-info h3 {
-  margin: 0 0 12px 0;
+.sidebar h3 {
   font-size: 16px;
-  color: #333;
+  line-height: 130%;
+  color: #2e3d50;
 }
 
-.sidebar-info p {
-  margin: 0;
-  font-size: 14px;
-  color: #6c757d;
-  line-height: 1.5;
+.sidebar p {
+  font-weight: 400;
+  font-size: 12px;
+  color: #475569;
+  line-height: 160%;
 }
 
 @media (max-width: 768px) {
