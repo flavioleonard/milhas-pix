@@ -7,11 +7,14 @@ import styles from "./NewOffer.module.css";
 import { Step1 } from "../../components/step-1/Step1";
 import { Step2 } from "../../components/step-2/Step2";
 import { Step3 } from "@/components/step-3/Step3";
+import { Step4 } from "@/components/step-4/Step4";
+import { useRouter } from "next/navigation";
 
 
 export const NewOffer = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+    const router = useRouter();
 
     const handleStepClick = (stepNumber: number) => {
         setCurrentStep(stepNumber);
@@ -57,7 +60,7 @@ export const NewOffer = () => {
             case 3:
                 return <Step3 onNext={handleStep3Next} onBack={handleStep3Back} />;
             case 4:
-                return <div>Conteúdo do Passo 4 - Finalização</div>;
+                return <Step4 onViewOffers={() => router.push('./')} />;
             default:
                 return <div>Passo não encontrado</div>;
         }
