@@ -27,6 +27,12 @@
   font-weight: 500;
 }
 
+.step-number {
+  color: var(--primary-02);
+  font-size: 20px;
+  font-weight: 600;
+}
+
 .price-range {
   display: flex !important;
   gap: 8px;
@@ -224,20 +230,47 @@
   font-weight: 600;
 }
 .back-button {
-  color: #2e3d50;
-  background-color: #e2e2e2;
+  color: #2e3d50 !important;
+  background-color: #e2e2e2 !important;
+  padding: 12px 24px;
+  border-radius: 44px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.next-button {
+  color: #ffffff !important;
+  background-color: #1e90ff !important;
+  padding: 12px 24px;
+  border-radius: 44px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.next-button:hover {
+  background-color: #0056b3 !important;
+}
+
+.back-button:hover {
+  background-color: #d1d1d1 !important;
 }
 
 .handle-step {
   display: flex;
   padding: 16px 0px;
   justify-content: space-between;
-}
-
-.next-button,
-.back-button {
-  font-weight: 500;
-  font-size: 14px;
 }
 
 .position {

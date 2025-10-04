@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import MilhaLogo from "../../assets/MilhaLogo.png"
-import "./Header.css";
+import styles from "./Header.module.css";
 
 export const Header: React.FC = () => {
     return (
-        <header className="header-container">
-            <div className="header-content">
-                <div className="logo-container">
+        <header className={styles['header-container']}>
+            <div className={styles['header-content']}>
+                <div className={styles['logo-container']}>
                     <Image
                         src={MilhaLogo}
                         alt="MilhasPix Logo"
@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
                         height={40}
                     />
                 </div>
-                <div className="balance-section">
+                <div className={styles['balance-section']}>
                     <span>R$ 283,12</span>
                 </div>
             </div>

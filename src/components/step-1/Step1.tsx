@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Step1.css";
+import styles from "./Step1.module.css";
 import Image from "next/image";
 import NextIcon from "../../assets/Next.png"
 import AzulLogo from "../../assets/TudoAzulLogo.png"
@@ -42,21 +42,21 @@ export const Step1 = ({ onNext }: Step1Props) => {
 
     return (
         <div>
-            <div className="step1-container">
-                <div className="step1-content">
-                    <Box className="box">
-                        <div className="step1-header">
-                            <span className="step-number">01.</span>
+            <div className={styles['step1-container']}>
+                <div className={styles['step1-content']}>
+                    <Box className={styles.box}>
+                        <div className={styles['step1-header']}>
+                            <span className={styles['step-number']}>01.</span>
                             <h2>Escolha o programa de fidelidade</h2>
                         </div>
-                        <div className="programs-grid">
+                        <div className={styles['programs-grid']}>
                             {programs.map((program) => (
                                 <button
                                     key={program.id}
-                                    className={`program-card ${selectedProgram === program.id ? 'selected' : ''}`}
+                                    className={`${styles['program-card']} ${selectedProgram === program.id ? styles.selected : ''}`}
                                     onClick={() => setSelectedProgram(program.id)}
                                 >
-                                    <div className="program-logo">
+                                    <div className={styles['program-logo']}>
                                         <Image src={program.logo}
                                             alt="Logo"
                                             width={120}
@@ -65,24 +65,24 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                 </button>
                             ))}
                         </div>
-                        <div className="form-row">
-                            <div className="form-group">
+                        <div className={styles['form-row']}>
+                            <div className={styles['form-group']}>
                                 <label>Produto</label>
                                 <select
                                     value={product}
                                     onChange={(e) => setProduct(e.target.value)}
-                                    className="form-select"
+                                    className={styles['form-select']}
                                 >
                                     <option value="Liminar">Liminar</option>
                                     <option value="Outro">Outro</option>
                                 </select>
                             </div>
-                            <div className="form-group">
+                            <div className={styles['form-group']}>
                                 <label>CPF's Disponíveis</label>
                                 <select
                                     value={availableCPFs}
                                     onChange={(e) => setAvailableCPFs(e.target.value)}
-                                    className="form-select"
+                                    className={styles['form-select']}
                                 >
                                     <option value="Ilimitado">Ilimitado</option>
                                     <option value="Limitado">Limitado</option>
@@ -91,10 +91,10 @@ export const Step1 = ({ onNext }: Step1Props) => {
                         </div>
 
                     </Box>
-                    <div className="button-section">
+                    <div className={styles['button-section']}>
                         <Button
                             name="Prosseguir"
-                            className="button"
+                            className={styles.button}
                             icon={NextIcon}
                             iconPosition="right"
                             onClick={handleNext}
@@ -102,7 +102,7 @@ export const Step1 = ({ onNext }: Step1Props) => {
                     </div>
                 </div>
                 <div>
-                    <Box className="sidebar-info">
+                    <Box className={styles['sidebar-info']}>
                         <h3>Selecione o programa</h3>
                         <p>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</p>
                     </Box>

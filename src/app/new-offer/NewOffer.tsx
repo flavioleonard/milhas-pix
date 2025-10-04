@@ -3,9 +3,10 @@
 
 import { useState } from "react";
 import { StepBox } from "../../components/step-box/StepBox";
-import "./NewOffer.css";
+import styles from "./NewOffer.module.css";
 import { Step1 } from "../../components/step-1/Step1";
 import { Step2 } from "../../components/step-2/Step2";
+import { Step3 } from "@/components/step-3/Step3";
 
 
 export const NewOffer = () => {
@@ -30,6 +31,17 @@ export const NewOffer = () => {
         setCurrentStep(1);
     };
 
+    const handleStep3Next = (data: any) => {
+        completeStep(3);
+        setCurrentStep(4);
+    }
+
+    const handleStep3Back = () => {
+        setCurrentStep(2);
+    };
+
+
+
     const completeStep = (stepNumber: number) => {
         if (!completedSteps.includes(stepNumber)) {
             setCompletedSteps([...completedSteps, stepNumber]);
@@ -39,11 +51,11 @@ export const NewOffer = () => {
     const renderStepContent = () => {
         switch (currentStep) {
             case 1:
-                return <><Step1 onNext={handleStep1Next} /></>;
+                return <Step1 onNext={handleStep1Next} />;
             case 2:
                 return <Step2 onNext={handleStep2Next} onBack={handleStep2Back} />;
             case 3:
-                return <div>Conteúdo do Passo 3 - Dados do programa</div>;
+                return <Step3 onNext={handleStep3Next} onBack={handleStep3Back} />;
             case 4:
                 return <div>Conteúdo do Passo 4 - Finalização</div>;
             default:
@@ -52,8 +64,8 @@ export const NewOffer = () => {
     };
 
     return (
-        <div className="new-offer-container">
-            <div className="new-offer-content">
+        <div className={styles['new-offer-container']}>
+            <div className={styles['new-offer-content']}>
                 <StepBox
                     currentStep={currentStep}
                     completedSteps={completedSteps}

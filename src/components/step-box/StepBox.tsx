@@ -1,5 +1,5 @@
 import { StepCircle } from "../step-circle/StepCircle";
-import "./StepBox.css";
+import styles from "./StepBox.module.css";
 
 
 interface StepBoxProps {
@@ -23,8 +23,8 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
 
     const getConnectorClass = (stepNumber: number) => {
         return isConnectorActive(stepNumber)
-            ? "step-connector active"
-            : "step-connector";
+            ? `${styles['step-connector']} ${styles.active}`
+            : styles['step-connector'];
     };
 
     const handleStepClick = (stepNumber: number) => {
@@ -33,23 +33,23 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
 
 
     return (
-        <div className="step-box">
+        <div className={styles['step-box']}>
             {steps.map((step, index) => (
                 <div
                     key={step.number}
-                    className="step-container"
+                    className={styles['step-container']}
                     onClick={() => handleStepClick(step.number)}
                 >
-                    <div className="step-info">
-                        <div className="step-circle">
+                    <div className={styles['step-info']}>
+                        <div className={styles['step-circle']}>
                             <StepCircle
                                 isCurrent={currentStep === step.number}
                                 isDone={completedSteps.includes(step.number)}
                             />
                         </div>
-                        <div className="step-content">
-                            <h3 className="step-title">{step.title}</h3>
-                            <p className="step-description">{step.description}</p>
+                        <div className={styles['step-content']}>
+                            <h3 className={styles['step-title']}>{step.title}</h3>
+                            <p className={styles['step-description']}>{step.description}</p>
                         </div>
                     </div>
                     {index < steps.length - 1 && (
