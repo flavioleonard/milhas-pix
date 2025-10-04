@@ -12,6 +12,7 @@
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-imask": "^7.6.1",
     "react-switch": "^7.1.0"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-input-mask": "^3.0.6",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "typescript": "^5"
