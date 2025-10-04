@@ -66,6 +66,7 @@
 .password-form,
 .phone-form {
   display: flex;
+  justify-content: center;
   width: 100%;
   flex-direction: column;
   gap: 4px;
