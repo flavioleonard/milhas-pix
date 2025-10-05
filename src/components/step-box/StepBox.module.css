@@ -48,6 +48,11 @@
   color: #495057;
 }
 
+.step-title.pending,
+.step-description.pending {
+  color: #cbd5e1;
+}
+
 .step-description {
   margin: 0;
   font-size: 14px;

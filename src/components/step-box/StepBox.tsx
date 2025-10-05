@@ -31,6 +31,19 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
         onStepClick(stepNumber);
     };
 
+    const getStepTitleClass = (stepNumber: number) => {
+        const isPending = currentStep !== stepNumber && !completedSteps.includes(stepNumber);
+        return isPending
+            ? `${styles['step-title']} ${styles.pending}`
+            : styles['step-title'];
+    };
+
+    const getStepDescriptionClass = (stepNumber: number) => {
+        const isPending = currentStep !== stepNumber && !completedSteps.includes(stepNumber);
+        return isPending
+            ? `${styles['step-description']} ${styles.pending}`
+            : styles['step-description'];
+    };
 
     return (
         <div className={styles['step-box']}>
@@ -48,8 +61,8 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
                             />
                         </div>
                         <div className={styles['step-content']}>
-                            <h3 className={styles['step-title']}>{step.title}</h3>
-                            <p className={styles['step-description']}>{step.description}</p>
+                            <h3 className={getStepTitleClass(step.number)}>{step.title}</h3>
+                            <p className={getStepDescriptionClass(step.number)}>{step.description}</p>
                         </div>
                     </div>
                     {index < steps.length - 1 && (
