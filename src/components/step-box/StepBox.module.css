@@ -8,8 +8,8 @@
   position: relative;
   height: 86.25px;
   display: flex;
-  align-items: flex-start;
-  padding: 12px 0;
+  align-items: center;
+  padding: 12px;
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
@@ -21,7 +21,7 @@
 
 .step-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   width: 100%;
 }
@@ -66,8 +66,8 @@
 
 .step-connector {
   position: absolute;
-  left: 16px;
-  top: 44px;
+  left: 28px;
+  top: 70px;
   width: 2px;
   height: 72%;
   background: #e9ecef;
