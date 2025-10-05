@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import Switch from "react-switch";
-
+import { NumericFormat } from 'react-number-format';
 import styles from "./Step2.module.css";
 import { Box } from "../box/Box";
 import Image from "next/image";
 import DownPrice from '../../assets/DownPrice.png'
 import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 import { useDebounce } from "../../hooks/useDebounce";
-import { formatCurrency, parseCurrencyToNumber } from "../../utils/formatters";
 import { BackButton } from "../back-button/BackButton";
 import { NextButton } from "../next-button/NextButton";
 
@@ -33,8 +32,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const [paymentTiming, setPaymentTiming] = useState("imediato");
     const [averageIsChecked, setAverageIsChecked] = useState(false);
     const [milesQuantity, setMilesQuantity] = useState(0);
-    const [pricePerMile, setPricePerMile] = useState(1.8);
-    const [pricePerMileInput, setPricePerMileInput] = useState("R$ 1,80");
+    const [pricePerMile, setPricePerMile] = useState(25);
     const [useAverage, setUseAverage] = useState(false);
     const [ranking, setRanking] = useState<RankingItem[]>([]);
     const [isLoadingRanking, setIsLoadingRanking] = useState(false);
@@ -93,16 +91,6 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
             setRanking([]);
         }
     }, [debouncedPricePerMile]);
-
-
-    const handlePricePerMileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        const formattedValue = formatCurrency(value);
-        setPricePerMileInput(formattedValue);
-
-        const numericValue = parseCurrencyToNumber(formattedValue);
-        setPricePerMile(numericValue);
-    };
 
     const handleNext = () => {
         onNext({
@@ -167,14 +155,25 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                             <div className={styles['miles-values']}>
                                 <span>Valor de a cada 1.000 milhas</span>
                                 <Box className={`${styles['value-per-mile']} ${isPriceOutOfRange ? styles['value-per-mile-error'] : ''}`}>
-                                    <input
-                                        type="text"
-                                        name="miles-value"
-                                        id="miles-value"
-                                        value={pricePerMileInput}
-                                        onChange={handlePricePerMileChange}
+                                    <NumericFormat
+                                        value={pricePerMile}
+                                        onValueChange={(values) => {
+                                            const { floatValue } = values;
+                                            setPricePerMile(floatValue || 0);
+                                        }}
+                                        thousandSeparator="."
+                                        decimalSeparator=","
+                                        prefix="R$ "
+                                        decimalScale={2}
+                                        fixedDecimalScale
                                         placeholder="R$ 0,00"
                                         className={isPriceOutOfRange ? styles['input-error'] : ''}
+                                        style={{
+                                            outline: 'none',
+                                            width: '100%',
+                                            border: 'none',
+                                            background: 'transparent'
+                                        }}
                                     />
                                     {isPriceOutOfRange && <>
                                         <Image src={DownPrice} width={16} height={16} alt="O preço precisa estar no intervalo" />
@@ -190,6 +189,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                     onColor="#1e90ff"
                                     uncheckedIcon={false}
                                     checkedIcon={false}
+                                    handleDiameter={24}
                                     onChange={() => setAverageIsChecked(!averageIsChecked)}
                                 />
                                 <span data-is-average={averageIsChecked}>Definir média de milhas por passageiro</span>
