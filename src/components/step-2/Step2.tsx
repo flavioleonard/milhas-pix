@@ -112,9 +112,10 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         <div className={styles.container}>
             <div className={styles.content}>
                 <Box className={styles.box}>
-                    <div className={styles.header}>
-                        <span className={styles['step-number']}>02.</span>
-                        <h2>Oferte suas milhas</h2>
+                    <div className={styles['header']}>
+                        <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
+                            <span className={styles['step-number']}>02.</span>
+                            <span>Oferte suas milhas</span></div>
                         <div className={styles['price-range']}>
                             Faixa de preço: <span className={styles['price-highlight']}>R$ 1,60 - R$ 2,00</span>
                         </div>
@@ -122,7 +123,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
 
                     <div className={styles['payment-section']}>
                         <div className={styles['want-receive']}>
-                            <h3>Quero receber</h3>
+                            <span>Quero receber</span>
                             <div className={styles['timing-options']}>
                                 {timingOptions.map((option) => (
                                     <button
@@ -137,7 +138,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                         </div>
                         <div className={styles.miles}>
                             <div className={styles['miles-offers']}>
-                                <h3>Milhas ofertadas</h3>
+                                <span>Milhas ofertadas</span>
                                 <Box className={styles['miles-input']}>
                                     <input
                                         type="text"
@@ -156,7 +157,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                 </Box>
                             </div>
                             <div className={styles['miles-values']}>
-                                <h3>Valor de a cada 1.000 milhas</h3>
+                                <span>Valor de a cada 1.000 milhas</span>
                                 <Box className={styles['value-per-mile']}>
                                     <input
                                         type="text"
@@ -185,7 +186,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                     checkedIcon={false}
                                     onChange={() => setAverageIsChecked(!averageIsChecked)}
                                 />
-                                <h3>Definir média de milhas por passageiro</h3>
+                                <span data-is-average={averageIsChecked}>Definir média de milhas por passageiro</span>
                             </div>
                             {averageIsChecked && <div style={{ display: "flex", width: "100%", gap: "10px" }}>
                                 <Box className={styles['average-input']}>
@@ -218,12 +219,12 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
 
             <div className={styles.sidebar}>
                 <Box className={styles['sidebar-help']}>
-                    <h3>Média de milhas</h3>
+                    <span>Média de milhas</span>
                     <p>Ao vender mais de 20.000 milhas, ative as Opções Avançadas para definir a média de milhas por emissão.</p>
                 </Box>
 
                 <div className={styles['sidebar-ranking']}>
-                    <h3>Ranking de ofertas</h3>
+                    <span>Ranking de ofertas</span>
                     <Box className={styles['ranking-section']}>
                         {isLoadingRanking ? (
                             <div className={styles['ranking-item']}>
@@ -253,7 +254,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                 <div style={{ display: "flex", border: "1px solid #E2E2E2", width: "100%" }}></div>
 
                 <div className={styles['can-receive']}>
-                    <h3>Receba até: </h3>
+                    <span>Receba até: </span>
                     <div className={styles['total-value']}>
                         <span className={styles['currency-large']}>R$</span>
                         <span className={styles['value-large']}>
