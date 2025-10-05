@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 
-.step-container.current {
+.step-container[data-is-current="true"] {
   background-color: #f9f9f9;
   border-radius: 8px;
 }
@@ -48,8 +48,8 @@
   color: #495057;
 }
 
-.step-title.pending,
-.step-description.pending {
+.step-title[data-is-pending="true"],
+.step-description[data-is-pending="true"] {
   color: #cbd5e1;
 }
 
@@ -74,7 +74,7 @@
   z-index: 1;
 }
 
-.step-connector.active {
+.step-connector[data-is-active="true"] {
   background: var(--primary-02);
 }
 
