@@ -1,16 +1,18 @@
-.step1-container {
+.container {
   display: flex;
   gap: 30px;
   color: #2e3d50;
 }
 
-.step1-container * {
-  font-family: "DM Sans", sans-serif;
+.content {
+  width: 100%;
 }
 
-.step1-header {
+.header {
   display: flex;
   align-items: center;
+  font-size: 1.125rem;
+  font-weight: 500;
   gap: 8px;
   padding: 16px;
   border-bottom: 1px solid #e2e2e2;
@@ -18,23 +20,27 @@
 
 .step-number {
   color: var(--primary-02);
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.step1-header h2 {
-  font-weight: 500;
 }
 
 .programs-grid {
   display: flex;
+  justify-content: center;
+  max-height: 44px;
   padding: 16px;
   gap: 24px;
 }
 
 .program-card {
+  display: flex;
+  width: auto;
+  min-width: 120px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 56px;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
+  opacity: 1;
+  overflow: hidden;
   background: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -92,36 +98,18 @@
 }
 
 .sidebar-info {
-  padding: 16px;
+  padding: 12px;
+  gap: 8px;
 }
 
-.sidebar-info h3 {
-  margin: 0 0 8px 0;
+.sidebar-title {
   font-size: 16px;
+  font-weight: 500;
 }
 
-.sidebar-info p {
-  margin: 0;
-  font-size: 14px;
-  color: #6c757d;
-  line-height: 1.5;
-}
-
-.program-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 8px;
-  border-radius: 56px;
-  border: 2px solid transparent;
-  opacity: 1;
-  overflow: hidden;
-}
-
-.program-logo img {
-  width: 99px;
-  height: 18px;
-  object-fit: contain;
+.sidebar-description {
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .button-section {
@@ -131,6 +119,22 @@
 }
 
 .button {
+  font-weight: 500;
+  font-size: 14px;
   padding: 10px 24px;
   border-radius: 44px;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
+
+.logo-wrapper img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }

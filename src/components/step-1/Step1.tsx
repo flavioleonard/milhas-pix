@@ -2,10 +2,10 @@ import { useState } from "react";
 import styles from "./Step1.module.css";
 import Image from "next/image";
 import NextIcon from "../../assets/Next.png"
-import AzulLogo from "../../assets/TudoAzulLogo.png"
-import SmilesLogo from "../../assets/SmilesLogo.png"
-import LatamIcon from "../../assets/Latam.png"
-import AirPortugal from "../../assets/AirPortugal.png"
+import AzulLogo from "../../assets/TudoAzulCard.png"
+import SmilesLogo from "../../assets/SmilesCard.png"
+import LatamIcon from "../../assets/LatamCard.png"
+import AirPortugal from "../../assets/TapCard.png"
 import { Box } from "../box/Box";
 import { Button } from "../button/Button";
 
@@ -42,12 +42,12 @@ export const Step1 = ({ onNext }: Step1Props) => {
 
     return (
         <div>
-            <div className={styles['step1-container']}>
-                <div className={styles['step1-content']}>
+            <div className={styles['container']}>
+                <div className={styles['content']}>
                     <Box className={styles.box}>
-                        <div className={styles['step1-header']}>
+                        <div className={styles['header']}>
                             <span className={styles['step-number']}>01.</span>
-                            <h2>Escolha o programa de fidelidade</h2>
+                            <span>Escolha o programa de fidelidade</span>
                         </div>
                         <div className={styles['programs-grid']}>
                             {programs.map((program) => (
@@ -56,11 +56,19 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                     className={`${styles['program-card']} ${selectedProgram === program.id ? styles.selected : ''}`}
                                     onClick={() => setSelectedProgram(program.id)}
                                 >
-                                    <div className={styles['program-logo']}>
-                                        <Image src={program.logo}
-                                            alt="Logo"
-                                            width={120}
-                                            height={40} />
+
+                                    <div className={styles['logo-wrapper']}>
+                                        <Image
+                                            src={program.logo}
+                                            alt={`${program.name} logo`}
+                                            style={{
+                                                height: "auto",
+                                                width: "auto",
+                                                maxWidth: "100%",
+                                                maxHeight: "100%",
+                                            }}
+                                            unoptimized
+                                        />
                                     </div>
                                 </button>
                             ))}
@@ -103,8 +111,8 @@ export const Step1 = ({ onNext }: Step1Props) => {
                 </div>
                 <div>
                     <Box className={styles['sidebar-info']}>
-                        <h3>Selecione o programa</h3>
-                        <p>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</p>
+                        <span className={styles['sidebar-title']}>Selecione o programa</span>
+                        <span className={styles['sidebar-description']}>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</span>
                     </Box>
                 </div>
             </div>

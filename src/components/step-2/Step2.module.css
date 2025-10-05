@@ -3,10 +3,6 @@
   color: #2e3d50;
   gap: 30px;
 }
-
-.container * {
-  font-family: "DM Sans", sans-serif;
-}
 .container h3 {
   font-weight: 500;
 }
