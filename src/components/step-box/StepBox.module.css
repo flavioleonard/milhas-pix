@@ -14,8 +14,8 @@
   cursor: pointer;
 }
 
-.step-container:hover {
-  background-color: rgba(30, 144, 255, 0.05);
+.step-container.current {
+  background-color: #f9f9f9;
   border-radius: 8px;
 }
 

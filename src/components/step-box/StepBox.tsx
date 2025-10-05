@@ -45,12 +45,18 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
             : styles['step-description'];
     };
 
+    const getStepContainerClass = (stepNumber: number) => {
+        return currentStep === stepNumber
+            ? `${styles['step-container']} ${styles.current}`
+            : styles['step-container'];
+    };
+
     return (
         <div className={styles['step-box']}>
             {steps.map((step, index) => (
                 <div
                     key={step.number}
-                    className={styles['step-container']}
+                    className={getStepContainerClass(step.number)}
                     onClick={() => handleStepClick(step.number)}
                 >
                     <div className={styles['step-info']}>
