@@ -122,39 +122,23 @@
   justify-content: space-between;
 }
 
-.btn-back {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 24px;
-  border: 1px solid #6c757d;
-  background: white;
-  color: #6c757d;
+.next-button {
+  color: #ffffff !important;
+  background-color: #1e90ff !important;
+  padding: 12px 24px;
   border-radius: 44px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.btn-back:hover {
-  background: #6c757d;
-  color: white;
-}
-
-.btn-next {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 24px;
-  background: #007bff;
-  color: white;
   border: none;
-  border-radius: 44px;
   cursor: pointer;
+  font-weight: 500;
   font-size: 14px;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.btn-next:hover {
-  background: #0056b3;
+.next-button:hover {
+  background-color: #0056b3 !important;
 }
 
 .sidebar {

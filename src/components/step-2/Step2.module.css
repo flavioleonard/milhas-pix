@@ -3,8 +3,13 @@
   color: #2e3d50;
   gap: 30px;
 }
-.container h3 {
+.container span {
   font-weight: 500;
+  font-size: 16px;
+}
+
+.container input {
+  font-family: "DM Mono", sans-serif;
 }
 
 .header {
@@ -16,21 +21,15 @@
   border-bottom: 1px solid #e2e2e2;
 }
 
-.header h2 {
-  display: flex;
-  width: 301px;
-  white-space: nowrap;
-  font-weight: 500;
-}
-
 .step-number {
   color: var(--primary-02);
-  font-size: 20px;
-  font-weight: 600;
 }
 
 .price-range {
-  display: flex !important;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  height: 30px;
   gap: 8px;
   padding: 16px;
   white-space: nowrap;
@@ -56,10 +55,6 @@
   gap: 8px;
 }
 
-.want-receive h3 {
-  line-height: 130%;
-}
-
 .timing-options {
   display: flex;
   white-space: nowrap;
@@ -73,18 +68,17 @@
   border-radius: 25px;
   background: white;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .timing-btn.selected {
-  border-color: #007bff;
-  background: #007bff;
-  color: white;
+  border: 2px solid var(--primary-02);
 }
 
 .timing-btn:hover:not(.selected) {
-  border-color: #007bff;
+  border-color: var(--primary-01);
 }
 
 .miles {
@@ -136,6 +130,14 @@
   background: transparent;
 }
 
+.value-per-mile-error {
+  border: 1px solid #dc2b2b !important;
+}
+
+.input-error {
+  color: #dc2b2b !important;
+}
+
 .average-input {
   display: flex;
   flex-direction: row;
@@ -154,8 +156,13 @@
 }
 .average-miles {
   display: flex;
+  align-items: center;
   gap: 10px;
   width: 100%;
+}
+
+.average-miles span[data-is-average="false"] {
+  color: #8f8f8f;
 }
 
 .tip {
@@ -171,9 +178,6 @@
   white-space: nowrap;
 }
 
-.tip span {
-  font-weight: 600;
-}
 .sidebar {
   width: 248px;
   display: flex;
@@ -187,11 +191,6 @@
   border-radius: 8px;
 }
 
-.sidebar-help h3 {
-  font-size: 16px;
-  color: #2e3d50;
-}
-
 .sidebar-help p {
   font-weight: 400;
   font-size: 12px;
@@ -199,12 +198,9 @@
 }
 
 .sidebar-ranking {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-}
-
-.sidebar-ranking h3 {
-  line-height: 28px;
-  font-size: 16px;
 }
 
 .ranking-section {
@@ -218,6 +214,10 @@
   gap: 8px;
   padding: 12px;
   border-bottom: 1px solid #e2e2e2;
+}
+
+.ranking-item span {
+  font-size: 14px;
 }
 
 .ranking-item.highlight {
@@ -286,10 +286,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.can-receive h3 {
-  font-weight: 500;
 }
 
 .total-value {

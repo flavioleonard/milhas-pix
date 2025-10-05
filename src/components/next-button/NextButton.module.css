@@ -1,0 +1,18 @@
+.next-button {
+  color: #ffffff !important;
+  background-color: #1e90ff !important;
+  padding: 12px 24px;
+  border-radius: 44px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.next-button:hover {
+  background-color: #0056b3 !important;
+}

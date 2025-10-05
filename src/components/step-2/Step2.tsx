@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import Switch from "react-switch";
-
+import { NumericFormat } from 'react-number-format';
 import styles from "./Step2.module.css";
 import { Box } from "../box/Box";
 import Image from "next/image";
-import { Button } from "../button/Button";
-import NextIcon from "../../assets/Next.png";
-import BackIcon from "../../assets/Back.png";
+import DownPrice from '../../assets/DownPrice.png'
 import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 import { useDebounce } from "../../hooks/useDebounce";
-import { formatCurrency, parseCurrencyToNumber } from "../../utils/formatters";
+import { BackButton } from "../back-button/BackButton";
+import { NextButton } from "../next-button/NextButton";
 
 interface Step2Props {
     onNext: (data: Step2Data) => void;
@@ -33,13 +32,19 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const [paymentTiming, setPaymentTiming] = useState("imediato");
     const [averageIsChecked, setAverageIsChecked] = useState(false);
     const [milesQuantity, setMilesQuantity] = useState(0);
-    const [pricePerMile, setPricePerMile] = useState(1.8);
-    const [pricePerMileInput, setPricePerMileInput] = useState("R$ 1,80");
+    const [pricePerMile, setPricePerMile] = useState(25);
     const [useAverage, setUseAverage] = useState(false);
     const [ranking, setRanking] = useState<RankingItem[]>([]);
     const [isLoadingRanking, setIsLoadingRanking] = useState(false);
 
     const debouncedPricePerMile = useDebounce(pricePerMile, 500);
+
+    const isPriceInRange = (price: number) => {
+        return price >= 14 && price <= 16.56;
+    };
+
+    const isPriceOutOfRange = pricePerMile > 0 && !isPriceInRange(pricePerMile);
+
 
     const timingOptions = [
         { id: "Imediato", label: "Pagamento imediato" },
@@ -87,16 +92,6 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         }
     }, [debouncedPricePerMile]);
 
-
-    const handlePricePerMileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        const formattedValue = formatCurrency(value);
-        setPricePerMileInput(formattedValue);
-
-        const numericValue = parseCurrencyToNumber(formattedValue);
-        setPricePerMile(numericValue);
-    };
-
     const handleNext = () => {
         onNext({
             paymentTiming,
@@ -112,17 +107,19 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         <div className={styles.container}>
             <div className={styles.content}>
                 <Box className={styles.box}>
-                    <div className={styles.header}>
-                        <span className={styles['step-number']}>02.</span>
-                        <h2>Oferte suas milhas</h2>
+                    <div className={styles['header']}>
+                        <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
+                            <span className={styles['step-number']}>02.</span>
+                            <span>Oferte suas milhas</span>
+                        </div>
                         <div className={styles['price-range']}>
-                            Faixa de preço: <span className={styles['price-highlight']}>R$ 1,60 - R$ 2,00</span>
+                            Escolha entre: <span className={styles['price-highlight']}>R$ 14,00 - R$ 16,56</span>
                         </div>
                     </div>
 
                     <div className={styles['payment-section']}>
                         <div className={styles['want-receive']}>
-                            <h3>Quero receber</h3>
+                            <span>Quero receber</span>
                             <div className={styles['timing-options']}>
                                 {timingOptions.map((option) => (
                                     <button
@@ -137,7 +134,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                         </div>
                         <div className={styles.miles}>
                             <div className={styles['miles-offers']}>
-                                <h3>Milhas ofertadas</h3>
+                                <span>Milhas ofertadas</span>
                                 <Box className={styles['miles-input']}>
                                     <input
                                         type="text"
@@ -156,22 +153,31 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                 </Box>
                             </div>
                             <div className={styles['miles-values']}>
-                                <h3>Valor de a cada 1.000 milhas</h3>
-                                <Box className={styles['value-per-mile']}>
-                                    <input
-                                        type="text"
-                                        name="miles-value"
-                                        id="miles-value"
-                                        value={pricePerMileInput}
-                                        onChange={handlePricePerMileChange}
+                                <span>Valor de a cada 1.000 milhas</span>
+                                <Box className={`${styles['value-per-mile']} ${isPriceOutOfRange ? styles['value-per-mile-error'] : ''}`}>
+                                    <NumericFormat
+                                        value={pricePerMile}
+                                        onValueChange={(values) => {
+                                            const { floatValue } = values;
+                                            setPricePerMile(floatValue || 0);
+                                        }}
+                                        thousandSeparator="."
+                                        decimalSeparator=","
+                                        prefix="R$ "
+                                        decimalScale={2}
+                                        fixedDecimalScale
                                         placeholder="R$ 0,00"
+                                        className={isPriceOutOfRange ? styles['input-error'] : ''}
+                                        style={{
+                                            outline: 'none',
+                                            width: '100%',
+                                            border: 'none',
+                                            background: 'transparent'
+                                        }}
                                     />
-                                    <Image
-                                        src={AirPlanIcon}
-                                        alt="MilhasPix Logo"
-                                        width={20}
-                                        height={20}
-                                    />
+                                    {isPriceOutOfRange && <>
+                                        <Image src={DownPrice} width={16} height={16} alt="O preço precisa estar no intervalo" />
+                                    </>}
                                 </Box>
                             </div>
                         </div>
@@ -183,9 +189,10 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                     onColor="#1e90ff"
                                     uncheckedIcon={false}
                                     checkedIcon={false}
+                                    handleDiameter={24}
                                     onChange={() => setAverageIsChecked(!averageIsChecked)}
                                 />
-                                <h3>Definir média de milhas por passageiro</h3>
+                                <span data-is-average={averageIsChecked}>Definir média de milhas por passageiro</span>
                             </div>
                             {averageIsChecked && <div style={{ display: "flex", width: "100%", gap: "10px" }}>
                                 <Box className={styles['average-input']}>
@@ -199,31 +206,20 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                     </div>
                 </Box>
                 <div className={styles['handle-step']}>
-                    <Button
-                        name="Voltar"
-                        className={styles['back-button']}
-                        icon={BackIcon}
-                        iconPosition="left"
-                        onClick={onBack}
-                    />
-                    <Button
-                        name="Prosseguir"
-                        className={styles['next-button']}
-                        icon={NextIcon}
-                        iconPosition="right"
-                        onClick={handleNext}
-                    />
+
+                    <BackButton onClick={onBack} />
+                    <NextButton onClick={handleNext} />
                 </div>
             </div>
 
             <div className={styles.sidebar}>
                 <Box className={styles['sidebar-help']}>
-                    <h3>Média de milhas</h3>
+                    <span>Média de milhas</span>
                     <p>Ao vender mais de 20.000 milhas, ative as Opções Avançadas para definir a média de milhas por emissão.</p>
                 </Box>
 
                 <div className={styles['sidebar-ranking']}>
-                    <h3>Ranking de ofertas</h3>
+                    <span>Ranking de ofertas</span>
                     <Box className={styles['ranking-section']}>
                         {isLoadingRanking ? (
                             <div className={styles['ranking-item']}>
@@ -253,7 +249,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                 <div style={{ display: "flex", border: "1px solid #E2E2E2", width: "100%" }}></div>
 
                 <div className={styles['can-receive']}>
-                    <h3>Receba até: </h3>
+                    <span>Receba até: </span>
                     <div className={styles['total-value']}>
                         <span className={styles['currency-large']}>R$</span>
                         <span className={styles['value-large']}>
