@@ -2,10 +2,10 @@ import { useState } from "react";
 import styles from "./Step1.module.css";
 import Image from "next/image";
 import NextIcon from "../../assets/Next.png"
-import AzulLogo from "../../assets/TudoAzulLogo.png"
-import SmilesLogo from "../../assets/SmilesLogo.png"
-import LatamIcon from "../../assets/Latam.png"
-import AirPortugal from "../../assets/AirPortugal.png"
+import AzulLogo from "../../assets/TudoAzulCard.png"
+import SmilesLogo from "../../assets/SmilesCard.png"
+import LatamIcon from "../../assets/LatamCard.png"
+import AirPortugal from "../../assets/TapCard.png"
 import { Box } from "../box/Box";
 import { Button } from "../button/Button";
 
@@ -56,11 +56,19 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                     className={`${styles['program-card']} ${selectedProgram === program.id ? styles.selected : ''}`}
                                     onClick={() => setSelectedProgram(program.id)}
                                 >
-                                    <div className={styles['program-logo']}>
-                                        <Image src={program.logo}
-                                            alt="Logo"
-                                            width={120}
-                                            height={40} />
+
+                                    <div className={styles['logo-wrapper']}>
+                                        <Image
+                                            src={program.logo}
+                                            alt={`${program.name} logo`}
+                                            style={{
+                                                height: "auto",
+                                                width: "auto",
+                                                maxWidth: "100%",
+                                                maxHeight: "100%",
+                                            }}
+                                            unoptimized
+                                        />
                                     </div>
                                 </button>
                             ))}

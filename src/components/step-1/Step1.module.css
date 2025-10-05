@@ -4,6 +4,10 @@
   color: #2e3d50;
 }
 
+.content {
+  width: 100%;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -20,13 +24,23 @@
 
 .programs-grid {
   display: flex;
+  justify-content: center;
+  max-height: 44px;
   padding: 16px;
   gap: 24px;
 }
 
 .program-card {
+  display: flex;
+  width: auto;
+  min-width: 120px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 56px;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
+  opacity: 1;
+  overflow: hidden;
   background: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -98,23 +112,6 @@
   font-weight: 400;
 }
 
-.program-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 8px;
-  border-radius: 56px;
-  border: 2px solid transparent;
-  opacity: 1;
-  overflow: hidden;
-}
-
-.program-logo img {
-  width: 99px;
-  height: 18px;
-  object-fit: contain;
-}
-
 .button-section {
   display: flex;
   padding: 16px 0px 16px 0px;
@@ -124,4 +121,18 @@
 .button {
   padding: 10px 24px;
   border-radius: 44px;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
+
+.logo-wrapper img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
