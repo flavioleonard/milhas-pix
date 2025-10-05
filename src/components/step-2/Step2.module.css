@@ -8,6 +8,10 @@
   font-size: 16px;
 }
 
+.container input {
+  font-family: "DM Mono", sans-serif;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -186,6 +190,8 @@
 }
 
 .sidebar-ranking {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
@@ -200,6 +206,10 @@
   gap: 8px;
   padding: 12px;
   border-bottom: 1px solid #e2e2e2;
+}
+
+.ranking-item span {
+  font-size: 14px;
 }
 
 .ranking-item.highlight {
