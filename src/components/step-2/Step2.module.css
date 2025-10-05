@@ -130,6 +130,14 @@
   background: transparent;
 }
 
+.value-per-mile-error {
+  border: 1px solid #dc2b2b !important;
+}
+
+.input-error {
+  color: #dc2b2b !important;
+}
+
 .average-input {
   display: flex;
   flex-direction: row;

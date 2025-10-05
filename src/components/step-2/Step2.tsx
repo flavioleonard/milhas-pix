@@ -4,9 +4,7 @@ import Switch from "react-switch";
 import styles from "./Step2.module.css";
 import { Box } from "../box/Box";
 import Image from "next/image";
-import { Button } from "../button/Button";
-import NextIcon from "../../assets/Next.png";
-import BackIcon from "../../assets/Back.png";
+import DownPrice from '../../assets/DownPrice.png'
 import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 import { useDebounce } from "../../hooks/useDebounce";
 import { formatCurrency, parseCurrencyToNumber } from "../../utils/formatters";
@@ -42,6 +40,13 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
     const [isLoadingRanking, setIsLoadingRanking] = useState(false);
 
     const debouncedPricePerMile = useDebounce(pricePerMile, 500);
+
+    const isPriceInRange = (price: number) => {
+        return price >= 14 && price <= 16.56;
+    };
+
+    const isPriceOutOfRange = pricePerMile > 0 && !isPriceInRange(pricePerMile);
+
 
     const timingOptions = [
         { id: "Imediato", label: "Pagamento imediato" },
@@ -161,7 +166,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                             </div>
                             <div className={styles['miles-values']}>
                                 <span>Valor de a cada 1.000 milhas</span>
-                                <Box className={styles['value-per-mile']}>
+                                <Box className={`${styles['value-per-mile']} ${isPriceOutOfRange ? styles['value-per-mile-error'] : ''}`}>
                                     <input
                                         type="text"
                                         name="miles-value"
@@ -169,13 +174,11 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                         value={pricePerMileInput}
                                         onChange={handlePricePerMileChange}
                                         placeholder="R$ 0,00"
+                                        className={isPriceOutOfRange ? styles['input-error'] : ''}
                                     />
-                                    <Image
-                                        src={AirPlanIcon}
-                                        alt="MilhasPix Logo"
-                                        width={20}
-                                        height={20}
-                                    />
+                                    {isPriceOutOfRange && <>
+                                        <Image src={DownPrice} width={16} height={16} alt="O preço precisa estar no intervalo" />
+                                    </>}
                                 </Box>
                             </div>
                         </div>
