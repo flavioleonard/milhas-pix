@@ -36,13 +36,13 @@ export const NewOffer = () => {
 
         setCurrentStep(stepNumber);
     };
-    const handleStep1Next = (data: any) => {
+    const handleStep1Next = () => {
         completeStep(1);
         setCurrentStep(2);
 
     };
 
-    const handleStep2Next = (data: any) => {
+    const handleStep2Next = () => {
         completeStep(2);
         setCurrentStep(3);
         handleStepClick(3);
@@ -53,7 +53,7 @@ export const NewOffer = () => {
         handleStepClick(1);
     };
 
-    const handleStep3Next = (data: any) => {
+    const handleStep3Next = () => {
         completeStep(3);
         setCurrentStep(4);
         handleStepClick(4);

@@ -5,6 +5,7 @@
   width: 32px;
   height: 32px;
   border-radius: 1182px;
+  transition: all 300ms ease-in-out;
 }
 
 .circle.current {
@@ -24,6 +25,7 @@
   width: 10px;
   height: 10px;
   border-radius: 1182px;
+  transition: all 300ms ease-in-out;
 }
 
 .center-circle.current {
