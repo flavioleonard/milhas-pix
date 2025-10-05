@@ -42,12 +42,12 @@ export const Step1 = ({ onNext }: Step1Props) => {
 
     return (
         <div>
-            <div className={styles['step1-container']}>
-                <div className={styles['step1-content']}>
+            <div className={styles['container']}>
+                <div className={styles['content']}>
                     <Box className={styles.box}>
-                        <div className={styles['step1-header']}>
+                        <div className={styles['header']}>
                             <span className={styles['step-number']}>01.</span>
-                            <h2>Escolha o programa de fidelidade</h2>
+                            <span>Escolha o programa de fidelidade</span>
                         </div>
                         <div className={styles['programs-grid']}>
                             {programs.map((program) => (
@@ -103,8 +103,8 @@ export const Step1 = ({ onNext }: Step1Props) => {
                 </div>
                 <div>
                     <Box className={styles['sidebar-info']}>
-                        <h3>Selecione o programa</h3>
-                        <p>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</p>
+                        <span className={styles['sidebar-title']}>Selecione o programa</span>
+                        <span className={styles['sidebar-description']}>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</span>
                     </Box>
                 </div>
             </div>

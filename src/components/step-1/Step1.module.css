@@ -1,12 +1,14 @@
-.step1-container {
+.container {
   display: flex;
   gap: 30px;
   color: #2e3d50;
 }
 
-.step1-header {
+.header {
   display: flex;
   align-items: center;
+  font-size: 1.125rem;
+  font-weight: 500;
   gap: 8px;
   padding: 16px;
   border-bottom: 1px solid #e2e2e2;
@@ -14,12 +16,6 @@
 
 .step-number {
   color: var(--primary-02);
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.step1-header h2 {
-  font-weight: 500;
 }
 
 .programs-grid {
@@ -88,19 +84,18 @@
 }
 
 .sidebar-info {
-  padding: 16px;
+  padding: 12px;
+  gap: 8px;
 }
 
-.sidebar-info h3 {
-  margin: 0 0 8px 0;
+.sidebar-title {
   font-size: 16px;
+  font-weight: 500;
 }
 
-.sidebar-info p {
-  margin: 0;
-  font-size: 14px;
-  color: #6c757d;
-  line-height: 1.5;
+.sidebar-description {
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .program-logo {
