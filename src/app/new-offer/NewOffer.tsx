@@ -17,30 +17,51 @@ export const NewOffer = () => {
     const router = useRouter();
 
     const handleStepClick = (stepNumber: number) => {
+        if (stepNumber > currentStep) {
+            const previousSteps = [];
+            for (let i = 1; i < stepNumber; i++) {
+                if (!completedSteps.includes(i)) {
+                    previousSteps.push(i);
+                }
+            }
+
+            if (previousSteps.length > 0) {
+                setCompletedSteps([...completedSteps, ...previousSteps]);
+            }
+        }
+        else if (stepNumber < currentStep) {
+            const newCompletedSteps = completedSteps.filter(step => step < stepNumber);
+            setCompletedSteps(newCompletedSteps);
+        }
+
         setCurrentStep(stepNumber);
     };
-
-    const handleStep1Next = (data: any) => {
+    const handleStep1Next = () => {
         completeStep(1);
         setCurrentStep(2);
+
     };
 
-    const handleStep2Next = (data: any) => {
+    const handleStep2Next = () => {
         completeStep(2);
         setCurrentStep(3);
+        handleStepClick(3);
     };
 
     const handleStep2Back = () => {
         setCurrentStep(1);
+        handleStepClick(1);
     };
 
-    const handleStep3Next = (data: any) => {
+    const handleStep3Next = () => {
         completeStep(3);
         setCurrentStep(4);
+        handleStepClick(4);
     }
 
     const handleStep3Back = () => {
         setCurrentStep(2);
+        handleStepClick(2);
     };
 
 

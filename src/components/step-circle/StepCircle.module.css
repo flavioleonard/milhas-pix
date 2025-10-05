@@ -5,18 +5,19 @@
   width: 32px;
   height: 32px;
   border-radius: 1182px;
+  transition: all 300ms ease-in-out;
 }
 
-.circle.current {
+.circle[data-is-current="true"] {
   border: 0.96px solid var(--primary-02);
   box-shadow: 0 0 0 8px rgba(30, 144, 255, 0.15);
 }
 
-.circle.done {
+.circle[data-is-done="true"] {
   background-color: var(--primary-02);
 }
 
-.circle.pending {
+.circle[data-is-pending="true"] {
   border: 0.96px solid #f0f0f0;
 }
 
@@ -24,16 +25,17 @@
   width: 10px;
   height: 10px;
   border-radius: 1182px;
+  transition: all 300ms ease-in-out;
 }
 
-.center-circle.current {
+.center-circle[data-is-current="true"] {
   background-color: var(--primary-02);
 }
 
-.center-circle.done {
+.center-circle[data-is-done="true"] {
   background-color: #fff;
 }
 
-.center-circle.pending {
+.center-circle[data-is-pending="true"] {
   background-color: #f0f0f0;
 }

@@ -16,47 +16,67 @@ export const StepBox = ({ currentStep, completedSteps, onStepClick }: StepBoxPro
         { number: 4, title: "Passo 4", description: "Pedido finalizado" }
     ];
 
+    const getStepStatus = (stepNumber: number) => {
+        const isCurrent = currentStep === stepNumber;
+        const isDone = completedSteps.includes(stepNumber);
+        const isPending = !isCurrent && !isDone;
+
+        return { isCurrent, isDone, isPending };
+    };
+
     const isConnectorActive = (stepNumber: number) => {
-        const nextStepNumber = stepNumber;
-        return currentStep > nextStepNumber || completedSteps.includes(nextStepNumber);
+        return currentStep > stepNumber || completedSteps.includes(stepNumber);
     };
-
-    const getConnectorClass = (stepNumber: number) => {
-        return isConnectorActive(stepNumber)
-            ? `${styles['step-connector']} ${styles.active}`
-            : styles['step-connector'];
-    };
-
-    const handleStepClick = (stepNumber: number) => {
-        onStepClick(stepNumber);
-    };
-
 
     return (
         <div className={styles['step-box']}>
-            {steps.map((step, index) => (
-                <div
-                    key={step.number}
-                    className={styles['step-container']}
-                    onClick={() => handleStepClick(step.number)}
-                >
-                    <div className={styles['step-info']}>
-                        <div className={styles['step-circle']}>
-                            <StepCircle
-                                isCurrent={currentStep === step.number}
-                                isDone={completedSteps.includes(step.number)}
+            {steps.map((step, index) => {
+                const { isCurrent, isDone, isPending } = getStepStatus(step.number);
+
+                return (
+                    <div
+                        key={step.number}
+                        className={styles['step-container']}
+                        data-is-current={isCurrent}
+                        data-is-done={isDone}
+                        data-is-pending={isPending}
+                        onClick={() => onStepClick(step.number)}
+                    >
+                        <div className={styles['step-info']}>
+                            <div className={styles['step-circle']}>
+                                <StepCircle
+                                    isCurrent={isCurrent}
+                                    isDone={isDone}
+                                />
+                            </div>
+                            <div className={styles['step-content']}>
+                                <h3
+                                    className={styles['step-title']}
+                                    data-is-current={isCurrent}
+                                    data-is-done={isDone}
+                                    data-is-pending={isPending}
+                                >
+                                    {step.title}
+                                </h3>
+                                <p
+                                    className={styles['step-description']}
+                                    data-is-current={isCurrent}
+                                    data-is-done={isDone}
+                                    data-is-pending={isPending}
+                                >
+                                    {step.description}
+                                </p>
+                            </div>
+                        </div>
+                        {index < steps.length - 1 && (
+                            <div
+                                className={styles['step-connector']}
+                                data-is-active={isConnectorActive(step.number)}
                             />
-                        </div>
-                        <div className={styles['step-content']}>
-                            <h3 className={styles['step-title']}>{step.title}</h3>
-                            <p className={styles['step-description']}>{step.description}</p>
-                        </div>
+                        )}
                     </div>
-                    {index < steps.length - 1 && (
-                        <div className={getConnectorClass(step.number)}></div>
-                    )}
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 };

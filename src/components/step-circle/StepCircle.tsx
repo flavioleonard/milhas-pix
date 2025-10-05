@@ -6,22 +6,22 @@ interface StepCircleProps {
 }
 
 export const StepCircle = ({ isCurrent, isDone }: StepCircleProps) => {
-    const getCircleClass = () => {
-        if (isCurrent) return `${styles.circle} ${styles.current}`;
-        if (isDone) return `${styles.circle} ${styles.done}`;
-        return `${styles.circle} ${styles.pending}`;
-    };
-
-    const getCenterCircleClass = () => {
-        if (isCurrent) return `${styles['center-circle']} ${styles.current}`;
-        if (isDone) return `${styles['center-circle']} ${styles.done}`;
-        return `${styles['center-circle']} ${styles.pending}`;
-    };
+    const isPending = !isCurrent && !isDone;
 
     return (
         <div className={styles.container}>
-            <div className={getCircleClass()}>
-                <div className={getCenterCircleClass()}>
+            <div
+                className={styles.circle}
+                data-is-current={isCurrent}
+                data-is-done={isDone}
+                data-is-pending={isPending}
+            >
+                <div
+                    className={styles['center-circle']}
+                    data-is-current={isCurrent}
+                    data-is-done={isDone}
+                    data-is-pending={isPending}
+                >
                 </div>
             </div>
         </div>
