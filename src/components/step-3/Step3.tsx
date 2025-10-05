@@ -1,9 +1,13 @@
 import { useState } from "react";
 import styles from "./Step3.module.css";
 import { Box } from "../box/Box";
+import NextIcon from "../../assets/Next.png";
+
 import { IMaskInput } from 'react-imask';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { BackButton } from "../back-button/BackButton";
+import { Button } from "../button/Button";
 
 interface Step3Props {
     onNext: (data: Step3Data) => void;
@@ -135,13 +139,15 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
                     </div>
                 </Box>
                 <div className={styles['action-buttons']}>
-                    <button className={styles['btn-back']} onClick={onBack}>
-                        ← Voltar
-                    </button>
+                    <BackButton onClick={onBack} />
                     <h5>Ao prosseguir você concorda com os termos de uso</h5>
-                    <button className={styles['btn-next']} onClick={handleNext}>
-                        Concluir →
-                    </button>
+                    <Button
+                        name="Concluir"
+                        className={styles['next-button']}
+                        icon={NextIcon}
+                        iconPosition="right"
+                        onClick={handleNext}
+                    />
                 </div>
             </div>
 

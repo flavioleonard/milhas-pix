@@ -8,6 +8,7 @@ import LatamIcon from "../../assets/LatamCard.png"
 import AirPortugal from "../../assets/TapCard.png"
 import { Box } from "../box/Box";
 import { Button } from "../button/Button";
+import { NextButton } from "../next-button/NextButton";
 
 
 interface Step1Props {
@@ -100,13 +101,7 @@ export const Step1 = ({ onNext }: Step1Props) => {
 
                     </Box>
                     <div className={styles['button-section']}>
-                        <Button
-                            name="Prosseguir"
-                            className={styles.button}
-                            icon={NextIcon}
-                            iconPosition="right"
-                            onClick={handleNext}
-                        />
+                        <NextButton onClick={handleNext} />
                     </div>
                 </div>
                 <div>

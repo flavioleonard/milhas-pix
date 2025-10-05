@@ -10,6 +10,8 @@ import BackIcon from "../../assets/Back.png";
 import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 import { useDebounce } from "../../hooks/useDebounce";
 import { formatCurrency, parseCurrencyToNumber } from "../../utils/formatters";
+import { BackButton } from "../back-button/BackButton";
+import { NextButton } from "../next-button/NextButton";
 
 interface Step2Props {
     onNext: (data: Step2Data) => void;
@@ -115,9 +117,10 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                     <div className={styles['header']}>
                         <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
                             <span className={styles['step-number']}>02.</span>
-                            <span>Oferte suas milhas</span></div>
+                            <span>Oferte suas milhas</span>
+                        </div>
                         <div className={styles['price-range']}>
-                            Faixa de preço: <span className={styles['price-highlight']}>R$ 1,60 - R$ 2,00</span>
+                            Escolha entre: <span className={styles['price-highlight']}>R$ 14,00 - R$ 16,56</span>
                         </div>
                     </div>
 
@@ -200,20 +203,9 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                     </div>
                 </Box>
                 <div className={styles['handle-step']}>
-                    <Button
-                        name="Voltar"
-                        className={styles['back-button']}
-                        icon={BackIcon}
-                        iconPosition="left"
-                        onClick={onBack}
-                    />
-                    <Button
-                        name="Prosseguir"
-                        className={styles['next-button']}
-                        icon={NextIcon}
-                        iconPosition="right"
-                        onClick={handleNext}
-                    />
+
+                    <BackButton onClick={onBack} />
+                    <NextButton onClick={handleNext} />
                 </div>
             </div>
 
