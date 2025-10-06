@@ -13,3 +13,14 @@
   width: 1216px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .layout-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .main-container {
+    max-width: 100% !important;
+  }
+}
