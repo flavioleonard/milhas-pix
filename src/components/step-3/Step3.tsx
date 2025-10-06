@@ -31,7 +31,7 @@ interface Step3Data {
 }
 
 export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Props) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     totalValue = 3333;
     const {
         register,
@@ -64,34 +64,33 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
     };
 
     return (
-        <div>
+        <div className={styles['mobile']}>
             <div className={styles.container}>
                 <div className={styles['content']}>
                     <Box>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className={styles['header']}>
-                                <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
-                                    <span className={styles['step-number']}>03.</span>
-                                    <span className={styles['header-text']}>Dados do programa</span>
-                                    <span className={styles['header-text-desktop']}>Insira os dados do programa de fidelidade</span>
-                                </div>
-                                <div className={styles['program-badge']}>
-                                    <Image
-                                        src={currentProgram.logo}
-                                        alt={`${currentProgram.name} logo`}
-                                        width={80}
-                                        height={24}
-                                        style={{
-                                            height: "auto",
-                                            width: "auto",
-                                            maxWidth: "80px",
-                                            maxHeight: "24px",
-                                        }}
-                                        unoptimized
-                                    />
-                                </div>
+                        <div className={styles['header']}>
+                            <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
+                                <span className={styles['step-number']}>03.</span>
+                                <span className={styles['header-text']}>Dados do programa</span>
+                                <span className={styles['header-text-desktop']}>Insira os dados do programa de fidelidade</span>
                             </div>
-
+                            <div className={styles['program-badge']}>
+                                <Image
+                                    src={currentProgram.logo}
+                                    alt={`${currentProgram.name} logo`}
+                                    width={80}
+                                    height={24}
+                                    style={{
+                                        height: "auto",
+                                        width: "auto",
+                                        maxWidth: "80px",
+                                        maxHeight: "24px",
+                                    }}
+                                    unoptimized
+                                />
+                            </div>
+                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className={styles['form-grid']}>
                                 <div className={styles['form-group-1']}>
                                     <div className={styles['cpf-form']}>
@@ -198,7 +197,6 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
                         </form>
                     </Box>
 
-                    {/* Mobile Sidebar */}
                     <div className={styles['mobile-sidebar']}>
                         <div className={styles['mobile-sidebar-header']} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                             <span>Dados da conta</span>
@@ -208,11 +206,10 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
                         </div>
                         {isSidebarOpen && (
                             <div className={styles['mobile-sidebar-content']}>
-                                <p>Por favor, insira os dados da conta que deseja cadastrar e verifique se estão corretos.</p>
+                                <span>Por favor, insira os dados da conta que deseja cadastrar e verifique se estão corretos.</span>
                             </div>
                         )}
                     </div>
-
                     {/* Desktop buttons */}
                     <div className={styles['action-buttons']}>
                         <BackButton onClick={onBack} />
@@ -234,7 +231,6 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
                 </Box>
             </div>
 
-            {/* Mobile Can Receive */}
             <div className={styles['mobile-can-receive']}>
                 <span className={styles['mobile-can-receive-title']}>Receba até</span>
                 <div className={styles['total-value']}>
@@ -244,7 +240,6 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
                     </span>
                 </div>
             </div>
-
             {/* Mobile footer */}
             <div className={styles['mobile-footer']}>
                 <button className={styles['mobile-footer-back']} onClick={onBack}>
@@ -260,9 +255,11 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
                         </defs>
                     </svg>
                 </button>
-                <div className={styles['mobile-footer-step']}>3 de 4</div>
+                <div className={styles['mobile-footer-step']}>2 de 4</div>
                 <NextButton onClick={handleSubmit(onSubmit)} />
             </div>
         </div>
+
+
     );
 };

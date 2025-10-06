@@ -15,4 +15,11 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+
+  .new-offer-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+  }
 }
