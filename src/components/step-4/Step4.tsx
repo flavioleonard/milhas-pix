@@ -2,12 +2,22 @@ import { Box } from "../box/Box";
 import styles from "./Step4.module.css";
 import Image from "next/image";
 import CongratulationsIcon from "../../assets/Congratulations.svg"
+import { AllData } from "@/types/StepData";
 
 interface Step4Props {
     onViewOffers: () => void;
+    allData: AllData;
 }
 
-export const Step4 = ({ onViewOffers }: Step4Props) => {
+export const Step4 = ({ onViewOffers, allData }: Step4Props) => {
+    const formData = {
+        ...allData.step1,
+        ...allData.step2,
+        ...allData.step3,
+    };
+
+    console.log("Dados preenchidos: ", formData);
+
     return (
         <Box className={styles['container']}>
 

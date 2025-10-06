@@ -4,7 +4,7 @@
   gap: 30px;
 }
 .content {
-  width: 100%;
+  width: 640px;
 }
 
 .container span,
@@ -167,4 +167,8 @@
   .form-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.error {
+  display: none;
 }

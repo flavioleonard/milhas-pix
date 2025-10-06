@@ -8,6 +8,9 @@
   font-size: 16px;
 }
 
+.content {
+  width: 100%;
+}
 .container input {
   font-family: "DM Mono", sans-serif;
 }
@@ -302,4 +305,11 @@
 .total-value span {
   color: #12a19a;
   font-size: 20px;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.7rem !important;
+  margin-top: 4px;
+  display: block;
 }
