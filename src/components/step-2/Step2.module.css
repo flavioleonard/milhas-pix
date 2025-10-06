@@ -1,328 +1,695 @@
-.container {
-  display: flex;
-  color: #2e3d50;
-  gap: 30px;
-}
-.container span {
-  font-weight: 500;
-  font-size: 16px;
+@media (min-width: 769px) {
+  .container {
+    display: flex;
+    color: #2e3d50;
+    gap: 30px;
+  }
+  .container span {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .content {
+    width: 100%;
+  }
+  .container input {
+    font-family: "DM Mono", sans-serif;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .step-number {
+    color: var(--primary-02);
+  }
+
+  .price-range {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    height: 30px;
+    gap: 8px;
+    padding: 16px;
+    white-space: nowrap;
+    background-color: #dc2b2b1a;
+    color: #dc2b2b;
+    border-radius: 40px;
+  }
+
+  .price-highlight {
+    font-weight: 600;
+  }
+
+  .payment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+  }
+
+  .want-receive {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timing-options {
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-around;
+    gap: 12px;
+  }
+
+  .timing-btn {
+    padding: 12px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .timing-btn.selected {
+    border: 2px solid var(--primary-02);
+  }
+
+  .timing-btn:hover:not(.selected) {
+    border-color: var(--primary-01);
+  }
+
+  .miles {
+    display: flex;
+    gap: 12px;
+  }
+
+  .miles-offers,
+  .miles-values {
+    display: flex;
+    gap: 4px;
+    font-size: 16px;
+    line-height: 130%;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .miles-input {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+  }
+
+  .miles-input input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
+
+  .value-per-mile {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+  }
+
+  .value-per-mile input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
+
+  .value-per-mile-error {
+    border: 1px solid #dc2b2b !important;
+  }
+
+  .input-error {
+    color: #dc2b2b !important;
+  }
+
+  .average {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .average-input {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+  }
+
+  .average-input input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
+  .average-miles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .average-miles span[data-is-average="false"] {
+    color: #8f8f8f;
+  }
+
+  .tip {
+    display: flex;
+    background: #e8f5e8;
+    color: #28a745;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .sidebar {
+    width: 248px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .sidebar-help {
+    padding: 12px;
+    gap: 8px;
+    border-radius: 8px;
+  }
+
+  .sidebar-help p {
+    font-weight: 400;
+    font-size: 12px;
+    color: #475569;
+  }
+
+  .sidebar-ranking {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ranking-section {
+    display: flex;
+    width: 100%;
+  }
+
+  .ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .ranking-item span {
+    font-size: 14px;
+  }
+
+  .ranking-item.highlight {
+    background: #e8f5e8;
+    color: #28a745;
+    font-weight: 600;
+  }
+
+  .line {
+    display: flex;
+    border: 1px solid #e2e2e2;
+    width: 100%;
+  }
+
+  .back-button {
+    color: #2e3d50 !important;
+    background-color: #e2e2e2 !important;
+    padding: 12px 24px;
+    border-radius: 44px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .next-button {
+    color: #ffffff !important;
+    background-color: #1e90ff !important;
+    padding: 12px 24px;
+    border-radius: 44px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .next-button:hover {
+    background-color: #0056b3 !important;
+  }
+
+  .back-button:hover {
+    background-color: #d1d1d1 !important;
+  }
+
+  .handle-step {
+    display: flex;
+    padding: 16px 0px;
+    justify-content: space-between;
+  }
+
+  .position {
+    color: #007bff;
+    font-weight: 600;
+  }
+
+  .you-label {
+    font-size: 12px;
+    background: #28a745;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .can-receive {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .total-value {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    border-radius: 8px;
+    background-color: #12a19a1a;
+    justify-content: space-between;
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .total-value span {
+    color: #12a19a;
+    font-size: 20px;
+  }
+
+  .error {
+    color: #e74c3c;
+    font-size: 0.7rem !important;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .mobile-ranking {
+    display: none;
+  }
+
+  .mobile-can-receive {
+    display: none;
+  }
+
+  .mobile-footer {
+    display: none;
+  }
 }
 
-.content {
-  width: 100%;
-}
-.container input {
-  font-family: "DM Mono", sans-serif;
-}
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  padding: 16px;
-  border-bottom: 1px solid #e2e2e2;
-}
+  .container {
+    display: flex;
+    flex-direction: column;
+    color: #2e3d50;
+    padding: 16px;
+    min-height: calc(100vh - 80px);
+  }
 
-.step-number {
-  color: var(--primary-02);
-}
+  .container span {
+    font-weight: 500;
+    font-size: 16px;
+  }
 
-.price-range {
-  display: flex;
-  box-sizing: border-box;
-  align-items: center;
-  height: 30px;
-  gap: 8px;
-  padding: 16px;
-  white-space: nowrap;
-  background-color: #dc2b2b1a;
-  color: #dc2b2b;
-  border-radius: 40px;
-}
+  .content {
+    width: 100%;
+    flex: 1;
+  }
 
-.price-highlight {
-  font-weight: 600;
-}
+  .container input {
+    font-family: "DM Mono", sans-serif;
+  }
 
-.payment-section {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 16px;
-}
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid #e2e2e2;
+  }
 
-.want-receive {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
 
-.timing-options {
-  display: flex;
-  white-space: nowrap;
-  justify-content: space-around;
-  gap: 12px;
-}
+  .step-number {
+    color: var(--primary-02);
+  }
 
-.timing-btn {
-  padding: 12px 20px;
-  border: 2px solid #e9ecef;
-  border-radius: 25px;
-  background: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
+  .price-range {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    height: 30px;
+    gap: 8px;
+    padding: 12px 16px;
+    white-space: nowrap;
+    background-color: #dc2b2b1a;
+    color: #dc2b2b;
+    border-radius: 40px;
+    width: fit-content;
+  }
 
-.timing-btn.selected {
-  border: 2px solid var(--primary-02);
-}
+  .price-highlight {
+    font-weight: 600;
+  }
 
-.timing-btn:hover:not(.selected) {
-  border-color: var(--primary-01);
-}
+  .payment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+  }
 
-.miles {
-  display: flex;
-  gap: 12px;
-}
+  .want-receive {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.miles-offers,
-.miles-values {
-  display: flex;
-  gap: 4px;
-  font-size: 16px;
-  line-height: 130%;
-  flex-direction: column;
-  width: 100%;
-}
+  .timing-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
 
-.miles-input {
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  justify-content: space-between;
-  border-radius: 44px;
-  padding: 10px 14px 10px 16px;
-  width: 100%;
-}
+  .timing-btn {
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-.miles-input input {
-  outline: none;
-  width: 100%;
-  border: none;
-  background: transparent;
-}
+  .timing-btn.selected {
+    border: 2px solid var(--primary-02);
+  }
 
-.value-per-mile {
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  justify-content: space-between;
-  border-radius: 44px;
-  padding: 10px 14px 10px 16px;
-  width: 100%;
-}
+  .timing-btn:hover:not(.selected) {
+    border-color: var(--primary-01);
+  }
 
-.value-per-mile input {
-  outline: none;
-  width: 100%;
-  border: none;
-  background: transparent;
-}
+  .miles {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.value-per-mile-error {
-  border: 1px solid #dc2b2b !important;
-}
+  .miles-offers,
+  .miles-values {
+    display: flex;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 130%;
+    flex-direction: column;
+    width: 100%;
+  }
 
-.input-error {
-  color: #dc2b2b !important;
-}
+  .miles-input {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+  }
 
-.average {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  .miles-input input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
 
-.average-input {
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  justify-content: space-between;
-  border-radius: 44px;
-  padding: 10px 14px 10px 16px;
-  width: 100%;
-}
+  .value-per-mile {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+  }
 
-.average-input input {
-  outline: none;
-  width: 100%;
-  border: none;
-  background: transparent;
-}
-.average-miles {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
+  .value-per-mile input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
 
-.average-miles span[data-is-average="false"] {
-  color: #8f8f8f;
-}
+  .value-per-mile-error {
+    border: 1px solid #dc2b2b !important;
+  }
 
-.tip {
-  display: flex;
-  background: #e8f5e8;
-  color: #28a745;
-  flex-direction: row;
-  box-sizing: border-box;
-  justify-content: space-between;
-  border-radius: 44px;
-  padding: 10px 14px 10px 16px;
-  width: 100%;
-  white-space: nowrap;
-}
+  .input-error {
+    color: #dc2b2b !important;
+  }
 
-.sidebar {
-  width: 248px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+  .average {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.sidebar-help {
-  padding: 12px;
-  gap: 8px;
-  border-radius: 8px;
-}
+  .average-input {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+  }
 
-.sidebar-help p {
-  font-weight: 400;
-  font-size: 12px;
-  color: #475569;
-}
+  .average-input input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
 
-.sidebar-ranking {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+  .average-miles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
 
-.ranking-section {
-  display: flex;
-  width: 100%;
-}
+  .average-miles span[data-is-average="false"] {
+    color: #8f8f8f;
+  }
 
-.ranking-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  border-bottom: 1px solid #e2e2e2;
-}
+  .tip {
+    display: flex;
+    background: #e8f5e8;
+    color: #28a745;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 44px;
+    padding: 10px 14px 10px 16px;
+    width: 100%;
+    white-space: nowrap;
+  }
 
-.ranking-item span {
-  font-size: 14px;
-}
+  .mobile-ranking {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px;
+  }
 
-.ranking-item.highlight {
-  background: #e8f5e8;
-  color: #28a745;
-  font-weight: 600;
-}
+  .mobile-ranking-title {
+    font-weight: 500;
+    font-size: 16px;
+    color: #2e3d50;
+  }
 
-.line {
-  display: flex;
-  border: 1px solid #e2e2e2;
-  width: 100%;
-}
+  .ranking-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-.back-button {
-  color: #2e3d50 !important;
-  background-color: #e2e2e2 !important;
-  padding: 12px 24px;
-  border-radius: 44px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
+  .ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid #e2e2e2;
+  }
 
-.next-button {
-  color: #ffffff !important;
-  background-color: #1e90ff !important;
-  padding: 12px 24px;
-  border-radius: 44px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
+  .ranking-item span {
+    font-size: 14px;
+  }
 
-.next-button:hover {
-  background-color: #0056b3 !important;
-}
+  .ranking-item.highlight {
+    background: #e8f5e8;
+    color: #28a745;
+    font-weight: 600;
+  }
 
-.back-button:hover {
-  background-color: #d1d1d1 !important;
-}
+  .position {
+    color: #007bff;
+    font-weight: 600;
+  }
 
-.handle-step {
-  display: flex;
-  padding: 16px 0px;
-  justify-content: space-between;
-}
+  .you-label {
+    font-size: 12px;
+    background: #28a745;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
 
-.position {
-  color: #007bff;
-  font-weight: 600;
-}
+  .mobile-can-receive {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px;
+    margin-bottom: 100px;
+  }
 
-.you-label {
-  font-size: 12px;
-  background: #28a745;
-  color: white;
-  padding: 2px 8px;
-  border-radius: 10px;
-}
+  .mobile-can-receive-title {
+    font-weight: 500;
+    font-size: 16px;
+    color: #2e3d50;
+  }
 
-.can-receive {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+  .total-value {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    border-radius: 8px;
+    background-color: #12a19a1a;
+    justify-content: space-between;
+    padding-right: 18px;
+    padding-left: 18px;
+  }
 
-.total-value {
-  display: flex;
-  align-items: center;
-  height: 44px;
-  border-radius: 8px;
-  background-color: #12a19a1a;
-  justify-content: space-between;
-  padding-right: 18px;
-  padding-left: 18px;
-}
+  .total-value span {
+    color: #12a19a;
+    font-size: 20px;
+  }
 
-.total-value span {
-  color: #12a19a;
-  font-size: 20px;
-}
+  .mobile-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-top: 1px solid #e9ecef;
+    background: white;
+    z-index: 100;
+    height: 60px;
+    box-sizing: border-box;
+  }
 
-.error {
-  color: #e74c3c;
-  font-size: 0.7rem !important;
-  margin-top: 4px;
-  display: block;
+  .mobile-footer-step {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+    color: #2e3d50;
+  }
+
+  .mobile-footer-back {
+    color: #2e3d50 !important;
+    background-color: #e2e2e2 !important;
+    padding: 10px 20px;
+    border-radius: 44px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-footer-next {
+    color: #ffffff !important;
+    background-color: #1e90ff !important;
+    padding: 10px 20px;
+    border-radius: 44px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .handle-step {
+    display: none;
+  }
+
+  .error {
+    color: #e74c3c;
+    font-size: 0.7rem !important;
+    margin-top: 4px;
+    display: block;
+  }
 }
