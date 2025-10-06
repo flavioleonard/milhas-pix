@@ -332,6 +332,10 @@
     display: none;
   }
 
+  .mobile-ranking-items {
+    display: none;
+  }
+
   .mobile-can-receive {
     display: none;
   }
@@ -564,6 +568,12 @@
     color: #2e3d50;
   }
 
+  .mobile-ranking-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   .ranking-section {
     display: flex;
     flex-direction: column;
@@ -574,18 +584,30 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px;
-    border-bottom: 1px solid #e2e2e2;
+    padding: 8px 16px;
+    border: 1px solid #e9ecef;
+    border-radius: 44px;
+    background: white;
+    font-size: 14px;
+    white-space: nowrap;
+    width: fit-content;
   }
 
   .ranking-item span {
     font-size: 14px;
+    color: #1e90ff;
+  }
+
+  .you-label {
+    font-size: 12px !important;
+    color: #12a19a !important;
   }
 
   .ranking-item.highlight {
-    background: #e8f5e8;
-    color: #28a745;
-    font-weight: 600;
+    background: #12a19a1a;
+    color: #12a19a;
+    font-weight: 500;
+    border-color: #12a19a;
   }
 
   .position {
@@ -593,10 +615,17 @@
     font-weight: 600;
   }
 
+  .ranking-item.highlight .position {
+    color: #12a19a;
+  }
+
+  .ranking-item.highlight span {
+    color: #12a19a !important;
+  }
+
   .you-label {
     font-size: 12px;
-    background: #28a745;
-    color: white;
+    color: #12a19a;
     padding: 2px 8px;
     border-radius: 10px;
   }

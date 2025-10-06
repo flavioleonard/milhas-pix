@@ -193,43 +193,69 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                         </Box>
                                         {errors.pricePerMile && <span className={styles.error}>{errors.pricePerMile.message}</span>}
                                     </div>
-                                </div>
-                                <div className={styles['average']}>
-                                    <div className={styles['average-miles']}>
-                                        <Switch
-                                            checked={watchedValues.useAverage}
-                                            offColor="#E2E2E2"
-                                            onColor="#1e90ff"
-                                            uncheckedIcon={false}
-                                            checkedIcon={false}
-                                            handleDiameter={24}
-                                            onChange={(checked) => setValue("useAverage", checked)}
-                                        />
-                                        <span data-is-average={watchedValues.useAverage}>Definir média de milhas por passageiro</span>
-                                    </div>
-                                    {watchedValues.useAverage && (
-                                        <div style={{ display: "flex", width: "100%", gap: "10px" }}>
-                                            <Box className={styles['average-input']}>
-                                                <input
-                                                    type="text"
-                                                    {...register("averageMiles", {
-                                                        validate: value => {
-                                                            if (watchedValues.useAverage && (!value || value <= 0)) {
-                                                                return "Preencha todos os campos";
-                                                            }
-                                                            return true;
-                                                        }
-                                                    })}
-                                                    onChange={(e) => setValue("averageMiles", Number(e.target.value.replace(/\D/g, '')))}
-                                                    placeholder="0"
-                                                />
-                                            </Box>
-                                            {errors.averageMiles && <span className={styles.error}>{errors.averageMiles.message}</span>}
-                                            <Box className={styles.tip}>
-                                                <p>Melhor média para sua oferta: <span>27.800</span></p>
-                                            </Box>
+                                    <div className={styles['mobile-ranking']}>
+                                        <div className={styles['mobile-ranking-items']}>
+                                            {isLoadingRanking ? (
+                                                <div className={styles['ranking-item']}>
+                                                    <span>Carregando...</span>
+                                                </div>
+                                            ) : ranking.length > 0 ? (
+                                                ranking.map((item) => (
+                                                    <div
+                                                        key={item.position}
+                                                        className={`${styles['ranking-item']} ${item.description === 'essa será sua posição' ? styles.highlight : ''}`}
+                                                    >
+                                                        <span className={styles.position}>{item.position}º</span>
+                                                        <span>R$ {item.mile_value.toFixed(2).replace('.', ',')}</span>
+                                                        {item.description === 'essa será sua posição' && (
+                                                            <span className={styles['you-label']}>VOCÊ</span>
+                                                        )}
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <div className={styles['ranking-item']}>
+                                                    <span>Digite um valor para ver o ranking</span>
+                                                </div>
+                                            )}
                                         </div>
-                                    )}
+                                    </div>
+                                    <div className={styles['average']}>
+                                        <div className={styles['average-miles']}>
+                                            <Switch
+                                                checked={watchedValues.useAverage}
+                                                offColor="#E2E2E2"
+                                                onColor="#1e90ff"
+                                                uncheckedIcon={false}
+                                                checkedIcon={false}
+                                                handleDiameter={24}
+                                                onChange={(checked) => setValue("useAverage", checked)}
+                                            />
+                                            <span data-is-average={watchedValues.useAverage}>Definir média de milhas por passageiro</span>
+                                        </div>
+                                        {watchedValues.useAverage && (
+                                            <div style={{ display: "flex", width: "100%", gap: "10px" }}>
+                                                <Box className={styles['average-input']}>
+                                                    <input
+                                                        type="text"
+                                                        {...register("averageMiles", {
+                                                            validate: value => {
+                                                                if (watchedValues.useAverage && (!value || value <= 0)) {
+                                                                    return "Preencha todos os campos";
+                                                                }
+                                                                return true;
+                                                            }
+                                                        })}
+                                                        onChange={(e) => setValue("averageMiles", Number(e.target.value.replace(/\D/g, '')))}
+                                                        placeholder="0"
+                                                    />
+                                                </Box>
+                                                {errors.averageMiles && <span className={styles.error}>{errors.averageMiles.message}</span>}
+                                                <Box className={styles.tip}>
+                                                    <p>Melhor média para sua oferta: <span>27.800</span></p>
+                                                </Box>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -292,33 +318,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
             </div>
 
             {/* Mobile Ranking */}
-            <div className={styles['mobile-ranking']}>
-                <span className={styles['mobile-ranking-title']}>Ranking de ofertas</span>
-                <Box className={styles['ranking-section']}>
-                    {isLoadingRanking ? (
-                        <div className={styles['ranking-item']}>
-                            <span>Carregando...</span>
-                        </div>
-                    ) : ranking.length > 0 ? (
-                        ranking.map((item) => (
-                            <div
-                                key={item.position}
-                                className={`${styles['ranking-item']} ${item.description === 'essa será sua posição' ? styles.highlight : ''}`}
-                            >
-                                <span className={styles.position}>{item.position}º</span>
-                                <span>R$ {item.mile_value.toFixed(2).replace('.', ',')}</span>
-                                {item.description === 'essa será sua posição' && (
-                                    <span className={styles['you-label']}>VOCÊ</span>
-                                )}
-                            </div>
-                        ))
-                    ) : (
-                        <div className={styles['ranking-item']}>
-                            <span>Digite um valor para ver o ranking</span>
-                        </div>
-                    )}
-                </Box>
-            </div>
+
 
             {/* Mobile Can Receive */}
             <div className={styles['mobile-can-receive']}>
