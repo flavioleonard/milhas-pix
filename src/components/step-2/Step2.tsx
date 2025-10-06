@@ -41,8 +41,6 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
     } = useForm<Step2Data>({
         defaultValues: {
             paymentTiming: "imediato",
-            milesQuantity: 0,
-            pricePerMile: 16.5,
             useAverage: false,
             averageMiles: 0
         }
@@ -100,7 +98,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         onNext(data);
     };
 
-    const totalValue = watchedValues.milesQuantity * watchedValues.pricePerMile;
+    const totalValue = (watchedValues.milesQuantity * watchedValues.pricePerMile) / 1000;
 
     return (
         <div className={styles.container}>
