@@ -32,7 +32,6 @@ interface Step3Data {
 
 export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Props) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    totalValue = 3333;
     const {
         register,
         handleSubmit,

@@ -69,6 +69,10 @@ export const NewOffer = () => {
         handleStepClick(2);
     };
 
+    const calculateTotalValue = (milesQuantity: number, pricePerMile: number) => {
+        return (milesQuantity * pricePerMile) / 1000;
+    };
+
     const completeStep = (stepNumber: number) => {
         if (!completedSteps.includes(stepNumber)) {
             setCompletedSteps([...completedSteps, stepNumber]);
@@ -86,7 +90,8 @@ export const NewOffer = () => {
                     onNext={handleStep3Next}
                     onBack={handleStep3Back}
                     selectedProgram={step1Data?.selectedProgram || 'tudoazul'}
-                />;
+                    totalValue={step2Data ? calculateTotalValue(step2Data.milesQuantity, step2Data.pricePerMile) : 0}
+                />
             case 4:
                 return <Step4
                     onViewOffers={() => router.push('./offer-list')}
