@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import Switch from "react-switch";
 import { NumericFormat } from 'react-number-format';
 import styles from "./Step2.module.css";
@@ -9,6 +10,7 @@ import AirPlanIcon from "../../assets/AirplaneInFlight.png"
 import { useDebounce } from "../../hooks/useDebounce";
 import { BackButton } from "../back-button/BackButton";
 import { NextButton } from "../next-button/NextButton";
+import { useState } from "react";
 
 interface Step2Props {
     onNext: (data: Step2Data) => void;
@@ -20,6 +22,7 @@ interface Step2Data {
     milesQuantity: number;
     pricePerMile: number;
     useAverage: boolean;
+    averageMiles?: number;
 }
 
 interface RankingItem {
@@ -29,22 +32,33 @@ interface RankingItem {
 }
 
 export const Step2 = ({ onNext, onBack }: Step2Props) => {
-    const [paymentTiming, setPaymentTiming] = useState("imediato");
-    const [averageIsChecked, setAverageIsChecked] = useState(false);
-    const [milesQuantity, setMilesQuantity] = useState(0);
-    const [pricePerMile, setPricePerMile] = useState(25);
-    const [useAverage, setUseAverage] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        watch,
+        formState: { errors }
+    } = useForm<Step2Data>({
+        defaultValues: {
+            paymentTiming: "imediato",
+            milesQuantity: 0,
+            pricePerMile: 25,
+            useAverage: false,
+            averageMiles: 0
+        }
+    });
+
     const [ranking, setRanking] = useState<RankingItem[]>([]);
     const [isLoadingRanking, setIsLoadingRanking] = useState(false);
 
-    const debouncedPricePerMile = useDebounce(pricePerMile, 500);
+    const watchedValues = watch();
+    const debouncedPricePerMile = useDebounce(watchedValues.pricePerMile, 500);
 
     const isPriceInRange = (price: number) => {
         return price >= 14 && price <= 16.56;
     };
 
-    const isPriceOutOfRange = pricePerMile > 0 && !isPriceInRange(pricePerMile);
-
+    const isPriceOutOfRange = watchedValues.pricePerMile > 0 && !isPriceInRange(watchedValues.pricePerMile);
 
     const timingOptions = [
         { id: "Imediato", label: "Pagamento imediato" },
@@ -69,16 +83,6 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         } catch (error) {
             console.error("Erro ao buscar ranking:", error);
             setRanking([]);
-
-            try {
-                const fallbackResponse = await fetch(`/api/ranking?mile_value=${mileValue.toFixed(2)}`);
-                if (fallbackResponse.ok) {
-                    const fallbackData: RankingItem[] = await fallbackResponse.json();
-                    setRanking(fallbackData);
-                }
-            } catch (fallbackError) {
-                console.error("Erro no fallback:", fallbackError);
-            }
         } finally {
             setIsLoadingRanking(false);
         }
@@ -92,123 +96,148 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         }
     }, [debouncedPricePerMile]);
 
-    const handleNext = () => {
-        onNext({
-            paymentTiming,
-            milesQuantity,
-            pricePerMile,
-            useAverage
-        });
+    const onSubmit = (data: Step2Data) => {
+        onNext(data);
     };
 
-    const totalValue = milesQuantity * pricePerMile;
+    const totalValue = watchedValues.milesQuantity * watchedValues.pricePerMile;
 
     return (
         <div className={styles.container}>
             <div className={styles.content}>
                 <Box className={styles.box}>
-                    <div className={styles['header']}>
-                        <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
-                            <span className={styles['step-number']}>02.</span>
-                            <span>Oferte suas milhas</span>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className={styles['header']}>
+                            <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
+                                <span className={styles['step-number']}>02.</span>
+                                <span>Oferte suas milhas</span>
+                            </div>
+                            <div className={styles['price-range']}>
+                                Escolha entre: <span className={styles['price-highlight']}>R$ 14,00 - R$ 16,56</span>
+                            </div>
                         </div>
-                        <div className={styles['price-range']}>
-                            Escolha entre: <span className={styles['price-highlight']}>R$ 14,00 - R$ 16,56</span>
-                        </div>
-                    </div>
 
-                    <div className={styles['payment-section']}>
-                        <div className={styles['want-receive']}>
-                            <span>Quero receber</span>
-                            <div className={styles['timing-options']}>
-                                {timingOptions.map((option) => (
-                                    <button
-                                        key={option.id}
-                                        className={`${styles['timing-btn']} ${paymentTiming === option.id ? styles.selected : ''}`}
-                                        onClick={() => setPaymentTiming(option.id)}
-                                    >
-                                        {option.label}
-                                    </button>
-                                ))}
+                        <div className={styles['payment-section']}>
+                            <div className={styles['want-receive']}>
+                                <span>Quero receber</span>
+                                <div className={styles['timing-options']}>
+                                    {timingOptions.map((option) => (
+                                        <button
+                                            key={option.id}
+                                            type="button"
+                                            className={`${styles['timing-btn']} ${watchedValues.paymentTiming === option.id ? styles.selected : ''}`}
+                                            onClick={() => setValue("paymentTiming", option.id)}
+                                        >
+                                            {option.label}
+                                        </button>
+                                    ))}
+                                </div>
+                                {errors.paymentTiming && <span className={styles.error}>{errors.paymentTiming.message}</span>}
+                            </div>
+                            <div className={styles.miles}>
+                                <div className={styles['miles-offers']}>
+                                    <span>Milhas ofertadas</span>
+                                    <Box className={styles['miles-input']}>
+                                        <input
+                                            type="text"
+                                            {...register("milesQuantity", {
+                                                required: "Preencha todos os campos",
+                                                min: { value: 1, message: "Deve ter pelo menos 1 milha" },
+                                                validate: value => value > 0 || "Preencha todos os campos"
+                                            })}
+                                            onChange={(e) => setValue("milesQuantity", Number(e.target.value.replace(/\D/g, '')))}
+                                            placeholder="0"
+                                        />
+                                        <Image
+                                            src={AirPlanIcon}
+                                            alt="MilhasPix Logo"
+                                            width={20}
+                                            height={20}
+                                        />
+                                    </Box>
+                                    {errors.milesQuantity && <span className={styles.error}>{errors.milesQuantity.message}</span>}
+                                </div>
+                                <div className={styles['miles-values']}>
+                                    <span>Valor de a cada 1.000 milhas</span>
+                                    <Box className={`${styles['value-per-mile']} ${isPriceOutOfRange ? styles['value-per-mile-error'] : ''}`}>
+                                        <NumericFormat
+                                            {...register("pricePerMile", {
+                                                required: "Preencha todos os campos",
+                                                min: { value: 0.01, message: "Preencha todos os campos" },
+                                                validate: {
+                                                    notEmpty: value => value > 0 || "Preencha todos os campos",
+                                                    inRange: value => (value >= 14 && value <= 16.56) || "Preço deve estar entre R$ 14,00 e R$ 16,56"
+                                                }
+                                            })}
+                                            value={watchedValues.pricePerMile}
+                                            onValueChange={(values) => {
+                                                const { floatValue } = values;
+                                                setValue("pricePerMile", floatValue || 0);
+                                            }}
+                                            thousandSeparator="."
+                                            decimalSeparator=","
+                                            prefix="R$ "
+                                            decimalScale={2}
+                                            fixedDecimalScale
+                                            placeholder="R$ 0,00"
+                                            className={isPriceOutOfRange ? styles['input-error'] : ''}
+                                            style={{
+                                                outline: 'none',
+                                                width: '100%',
+                                                border: 'none',
+                                                background: 'transparent'
+                                            }}
+                                        />
+                                        {isPriceOutOfRange && (
+                                            <Image src={DownPrice} width={16} height={16} alt="O preço precisa estar no intervalo" />
+                                        )}
+                                    </Box>
+                                    {errors.pricePerMile && <span className={styles.error}>{errors.pricePerMile.message}</span>}
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                <div className={styles['average-miles']}>
+                                    <Switch
+                                        checked={watchedValues.useAverage}
+                                        offColor="#E2E2E2"
+                                        onColor="#1e90ff"
+                                        uncheckedIcon={false}
+                                        checkedIcon={false}
+                                        handleDiameter={24}
+                                        onChange={(checked) => setValue("useAverage", checked)}
+                                    />
+                                    <span data-is-average={watchedValues.useAverage}>Definir média de milhas por passageiro</span>
+                                </div>
+                                {watchedValues.useAverage && (
+                                    <div style={{ display: "flex", width: "100%", gap: "10px" }}>
+                                        <Box className={styles['average-input']}>
+                                            <input
+                                                type="text"
+                                                {...register("averageMiles", {
+                                                    validate: value => {
+                                                        if (watchedValues.useAverage && (!value || value <= 0)) {
+                                                            return "Preencha todos os campos";
+                                                        }
+                                                        return true;
+                                                    }
+                                                })}
+                                                onChange={(e) => setValue("averageMiles", Number(e.target.value.replace(/\D/g, '')))}
+                                                placeholder="0"
+                                            />
+                                        </Box>
+                                        {errors.averageMiles && <span className={styles.error}>{errors.averageMiles.message}</span>}
+                                        <Box className={styles.tip}>
+                                            <p>Melhor média para sua oferta: <span>27.800</span></p>
+                                        </Box>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                        <div className={styles.miles}>
-                            <div className={styles['miles-offers']}>
-                                <span>Milhas ofertadas</span>
-                                <Box className={styles['miles-input']}>
-                                    <input
-                                        type="text"
-                                        name="miles-offers"
-                                        id="miles-offers"
-                                        value={milesQuantity || ''}
-                                        onChange={(e) => setMilesQuantity(Number(e.target.value.replace(/\D/g, '')))}
-                                        placeholder="0"
-                                    />
-                                    <Image
-                                        src={AirPlanIcon}
-                                        alt="MilhasPix Logo"
-                                        width={20}
-                                        height={20}
-                                    />
-                                </Box>
-                            </div>
-                            <div className={styles['miles-values']}>
-                                <span>Valor de a cada 1.000 milhas</span>
-                                <Box className={`${styles['value-per-mile']} ${isPriceOutOfRange ? styles['value-per-mile-error'] : ''}`}>
-                                    <NumericFormat
-                                        value={pricePerMile}
-                                        onValueChange={(values) => {
-                                            const { floatValue } = values;
-                                            setPricePerMile(floatValue || 0);
-                                        }}
-                                        thousandSeparator="."
-                                        decimalSeparator=","
-                                        prefix="R$ "
-                                        decimalScale={2}
-                                        fixedDecimalScale
-                                        placeholder="R$ 0,00"
-                                        className={isPriceOutOfRange ? styles['input-error'] : ''}
-                                        style={{
-                                            outline: 'none',
-                                            width: '100%',
-                                            border: 'none',
-                                            background: 'transparent'
-                                        }}
-                                    />
-                                    {isPriceOutOfRange && <>
-                                        <Image src={DownPrice} width={16} height={16} alt="O preço precisa estar no intervalo" />
-                                    </>}
-                                </Box>
-                            </div>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                            <div className={styles['average-miles']}>
-                                <Switch
-                                    checked={averageIsChecked}
-                                    offColor="#E2E2E2"
-                                    onColor="#1e90ff"
-                                    uncheckedIcon={false}
-                                    checkedIcon={false}
-                                    handleDiameter={24}
-                                    onChange={() => setAverageIsChecked(!averageIsChecked)}
-                                />
-                                <span data-is-average={averageIsChecked}>Definir média de milhas por passageiro</span>
-                            </div>
-                            {averageIsChecked && <div style={{ display: "flex", width: "100%", gap: "10px" }}>
-                                <Box className={styles['average-input']}>
-                                    <input type="text" name="average" id="average" />
-                                </Box>
-                                <Box className={styles.tip}>
-                                    <p>Melhor média para sua oferta: <span>27.800</span></p>
-                                </Box>
-                            </div>}
-                        </div>
-                    </div>
+                    </form>
                 </Box>
                 <div className={styles['handle-step']}>
-
                     <BackButton onClick={onBack} />
-                    <NextButton onClick={handleNext} />
+                    <NextButton onClick={handleSubmit(onSubmit)} />
                 </div>
             </div>
 

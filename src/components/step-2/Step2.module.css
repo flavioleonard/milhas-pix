@@ -303,3 +303,10 @@
   color: #12a19a;
   font-size: 20px;
 }
+
+.error {
+  color: #e74c3c;
+  font-size: 0.7rem !important;
+  margin-top: 4px;
+  display: block;
+}
