@@ -25,6 +25,14 @@
     border-bottom: 1px solid #e2e2e2;
   }
 
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
   .step-number {
     color: var(--primary-02);
   }
@@ -355,6 +363,10 @@
     display: none;
   }
 
+  .price-range {
+    display: none;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -395,20 +407,6 @@
 
   .step-number {
     color: var(--primary-02);
-  }
-
-  .price-range {
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    height: 30px;
-    gap: 8px;
-    padding: 12px 16px;
-    white-space: nowrap;
-    background-color: #dc2b2b1a;
-    color: #dc2b2b;
-    border-radius: 40px;
-    width: fit-content;
   }
 
   .price-highlight {
