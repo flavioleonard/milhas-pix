@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import styles from "./Step1.module.css";
 import Image from "next/image";
-import AzulLogo from "../../assets/TudoAzulCard.png"
-import SmilesLogo from "../../assets/SmilesCard.png"
-import LatamIcon from "../../assets/LatamCard.png"
-import AirPortugal from "../../assets/TapCard.png"
+import AzulLogo from "../../assets/TudoAzul_resized.png"
+import SmilesLogo from "../../assets/Smiles_resized.png"
+import LatamIcon from "../../assets/Latam_resized.png"
+import AirPortugal from "../../assets/Tap_resized.png"
 import { Box } from "../box/Box";
 import { NextButton } from "../next-button/NextButton";
 
@@ -71,8 +71,8 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                                 style={{
                                                     height: "auto",
                                                     width: "auto",
-                                                    maxWidth: "100%",
-                                                    maxHeight: "100%",
+                                                    maxWidth: "60%",
+                                                    maxHeight: "60%",
                                                 }}
                                                 unoptimized
                                             />
@@ -108,7 +108,7 @@ export const Step1 = ({ onNext }: Step1Props) => {
                         <NextButton onClick={handleSubmit(onSubmit)} />
                     </div>
                 </div>
-                <div>
+                <div style={{ width: '248px' }}>
                     <Box className={styles['sidebar-info']}>
                         <span className={styles['sidebar-title']}>Selecione o programa</span>
                         <span className={styles['sidebar-description']}>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</span>
