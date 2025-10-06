@@ -141,6 +141,12 @@
   color: #dc2b2b !important;
 }
 
+.average {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .average-input {
   display: flex;
   flex-direction: row;
@@ -228,6 +234,13 @@
   color: #28a745;
   font-weight: 600;
 }
+
+.line {
+  display: flex;
+  border: 1px solid #e2e2e2;
+  width: 100%;
+}
+
 .back-button {
   color: #2e3d50 !important;
   background-color: #e2e2e2 !important;

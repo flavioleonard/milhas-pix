@@ -193,7 +193,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                     {errors.pricePerMile && <span className={styles.error}>{errors.pricePerMile.message}</span>}
                                 </div>
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                            <div className={styles['average']}>
                                 <div className={styles['average-miles']}>
                                     <Switch
                                         checked={watchedValues.useAverage}
@@ -273,7 +273,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                     </Box>
                 </div>
 
-                <div style={{ display: "flex", border: "1px solid #E2E2E2", width: "100%" }}></div>
+                <div className={styles['line']}></div>
 
                 <div className={styles['can-receive']}>
                     <span>Receba até: </span>
