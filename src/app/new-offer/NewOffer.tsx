@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 import { StepBox } from "../../components/step-box/StepBox";
 import styles from "./NewOffer.module.css";
@@ -10,10 +9,32 @@ import { Step3 } from "@/components/step-3/Step3";
 import { Step4 } from "@/components/step-4/Step4";
 import { useRouter } from "next/navigation";
 
+interface Step1Data {
+    selectedProgram: string;
+    product: string;
+    availableCPFs: string;
+}
+
+interface Step2Data {
+    paymentTiming: string;
+    milesQuantity: number;
+    pricePerMile: number;
+    useAverage: boolean;
+}
+
+interface Step3Data {
+    cpf: string;
+    loginAccess: string;
+    accessPassword: string;
+    authPhone: string;
+}
 
 export const NewOffer = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+    const [step1Data, setStep1Data] = useState<Step1Data | null>(null);
+    const [step2Data, setStep2Data] = useState<Step2Data | null>(null);
+    const [step3Data, setStep3Data] = useState<Step3Data | null>(null);
     const router = useRouter();
 
     const handleStepClick = (stepNumber: number) => {
@@ -36,13 +57,15 @@ export const NewOffer = () => {
 
         setCurrentStep(stepNumber);
     };
-    const handleStep1Next = () => {
+
+    const handleStep1Next = (data: Step1Data) => {
+        setStep1Data(data);
         completeStep(1);
         setCurrentStep(2);
-
     };
 
-    const handleStep2Next = () => {
+    const handleStep2Next = (data: Step2Data) => {
+        setStep2Data(data);
         completeStep(2);
         setCurrentStep(3);
         handleStepClick(3);
@@ -53,7 +76,8 @@ export const NewOffer = () => {
         handleStepClick(1);
     };
 
-    const handleStep3Next = () => {
+    const handleStep3Next = (data: Step3Data) => {
+        setStep3Data(data);
         completeStep(3);
         setCurrentStep(4);
         handleStepClick(4);
@@ -63,8 +87,6 @@ export const NewOffer = () => {
         setCurrentStep(2);
         handleStepClick(2);
     };
-
-
 
     const completeStep = (stepNumber: number) => {
         if (!completedSteps.includes(stepNumber)) {
@@ -79,7 +101,11 @@ export const NewOffer = () => {
             case 2:
                 return <Step2 onNext={handleStep2Next} onBack={handleStep2Back} />;
             case 3:
-                return <Step3 onNext={handleStep3Next} onBack={handleStep3Back} />;
+                return <Step3
+                    onNext={handleStep3Next}
+                    onBack={handleStep3Back}
+                    selectedProgram={step1Data?.selectedProgram || 'tudoazul'}
+                />;
             case 4:
                 return <Step4 onViewOffers={() => router.push('./offer-list')} />;
             default:
@@ -101,4 +127,3 @@ export const NewOffer = () => {
         </div >
     );
 };
-
