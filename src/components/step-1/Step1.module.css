@@ -19,6 +19,10 @@
     border-bottom: 1px solid #e2e2e2;
   }
 
+  .mobile-text {
+    display: none;
+  }
+
   .step-number {
     color: var(--primary-02);
   }
@@ -162,10 +166,21 @@
     display: none;
   }
 
+  .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
     color: #2e3d50;
     padding: 16px;
   }
@@ -185,6 +200,10 @@
     gap: 8px;
     padding: 16px;
     border-bottom: 1px solid #e2e2e2;
+  }
+
+  .desktop-text {
+    display: none;
   }
 
   .step-number {

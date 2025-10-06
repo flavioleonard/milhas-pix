@@ -57,14 +57,16 @@ export const Step1 = ({ onNext }: Step1Props) => {
     };
 
     return (
-        <div>
+        <div className={styles['mobile']}>
             <div className={styles['container']}>
                 <div className={styles['content']}>
                     <Box className={styles.box}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className={styles['header']}>
                                 <span className={styles['step-number']}>01.</span>
-                                <span>Escolha o programa de fidelidade</span>
+                                <span className={styles['desktop-text']}>Escolha o programa de fidelidade</span>
+                                <span className={styles['mobile-text']}>Escolha o programa</span>
+
                             </div>
 
                             {/* Desktop version - programs grid */}
