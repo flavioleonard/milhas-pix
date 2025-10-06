@@ -42,7 +42,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
         defaultValues: {
             paymentTiming: "imediato",
             milesQuantity: 0,
-            pricePerMile: 25,
+            pricePerMile: 16.5,
             useAverage: false,
             averageMiles: 0
         }
