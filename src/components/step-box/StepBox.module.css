@@ -81,3 +81,9 @@
 .step-container:last-child .step-connector {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .step-box {
+    display: none;
+  }
+}
