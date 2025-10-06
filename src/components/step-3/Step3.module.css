@@ -3,11 +3,15 @@
   color: #2e3d50;
   gap: 30px;
 }
-
-.container h3 {
-  font-weight: 500;
+.content {
+  width: 100%;
 }
 
+.container span,
+.container label {
+  font-weight: 500;
+  font-size: 16px;
+}
 .header {
   display: flex;
   white-space: nowrap;
@@ -32,12 +36,13 @@
 }
 
 .program-badge {
-  background: #007bff;
-  color: white;
+  background: white;
+  border: 1px solid #e9ecef;
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-grid {
@@ -45,10 +50,6 @@
   flex-direction: column;
   padding: 16px;
   gap: 16px;
-}
-
-.form-grid label {
-  font-weight: 500;
 }
 
 .form-group-1,
@@ -68,21 +69,15 @@
   gap: 4px;
 }
 
-.form-group label {
-  font-weight: 500;
-  color: #333;
-  font-size: 14px;
-}
-
 .form-input {
   display: flex;
   font-family: "DM MONO";
+  font-size: 14px;
 
   justify-content: space-between;
   padding: 10px 14px 10px 16px;
   border: 1px solid #e9ecef;
   border-radius: 44px;
-  font-size: 16px;
   transition: all 0.3s ease;
   background: #f8f9fa;
 }
@@ -144,6 +139,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
+  width: 248px;
   height: fit-content;
   border-radius: 8px;
   gap: 8px;

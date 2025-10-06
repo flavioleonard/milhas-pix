@@ -1,7 +1,12 @@
 import { useState } from "react";
 import styles from "./Step3.module.css";
 import { Box } from "../box/Box";
+import Image from "next/image";
 import NextIcon from "../../assets/Next.png";
+import AzulLogo from "../../assets/TudoAzulCard.png";
+import SmilesLogo from "../../assets/SmilesCard.png";
+import LatamIcon from "../../assets/LatamCard.png";
+import AirPortugal from "../../assets/TapCard.png";
 
 import { IMaskInput } from 'react-imask';
 import PhoneInput from 'react-phone-input-2';
@@ -12,6 +17,7 @@ import { Button } from "../button/Button";
 interface Step3Props {
     onNext: (data: Step3Data) => void;
     onBack: () => void;
+    selectedProgram: string;
 }
 
 interface Step3Data {
@@ -21,11 +27,20 @@ interface Step3Data {
     authPhone: string;
 }
 
-export const Step3 = ({ onNext, onBack }: Step3Props) => {
+export const Step3 = ({ onNext, onBack, selectedProgram }: Step3Props) => {
     const [cpf, setCpf] = useState("000.000.000-00");
     const [loginAccess, setLoginAccess] = useState("1283124124");
     const [accessPassword, setAccessPassword] = useState("1877");
     const [authPhone, setAuthPhone] = useState("5511111111111");
+
+    const programsData = {
+        tudoazul: { name: "TudoAzul", logo: AzulLogo },
+        smiles: { name: "Smiles", logo: SmilesLogo },
+        latampass: { name: "LATAM PASS", logo: LatamIcon },
+        tap: { name: "TAP", logo: AirPortugal }
+    };
+
+    const currentProgram = programsData[selectedProgram as keyof typeof programsData] || programsData.tudoazul;
 
     const handleNext = () => {
         onNext({
@@ -41,10 +56,24 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
             <div className={styles['content']}>
                 <Box>
                     <div className={styles['header']}>
-                        <span className={styles['step-number']}>03.</span>
-                        <h2>Insira os dados do programa de fidelidade</h2>
+                        <div style={{ display: 'flex', fontWeight: '500', fontSize: '1.125rem', gap: '8px', alignItems: 'center' }}>
+                            <span className={styles['step-number']}>03.</span>
+                            <span>Insira os dados do programa de fidelidade</span>
+                        </div>
                         <div className={styles['program-badge']}>
-                            <span>TudoAzul</span>
+                            <Image
+                                src={currentProgram.logo}
+                                alt={`${currentProgram.name} logo`}
+                                width={80}
+                                height={24}
+                                style={{
+                                    height: "auto",
+                                    width: "auto",
+                                    maxWidth: "80px",
+                                    maxHeight: "24px",
+                                }}
+                                unoptimized
+                            />
                         </div>
                     </div>
 
@@ -152,7 +181,7 @@ export const Step3 = ({ onNext, onBack }: Step3Props) => {
             </div>
 
             <Box className={styles['sidebar']}>
-                <h3>Dados da Conta</h3>
+                <span>Dados da Conta</span>
                 <p>Por favor, insira os dados da conta que deseja cadastrar e verifique se estão corretos.</p>
             </Box>
         </div>
