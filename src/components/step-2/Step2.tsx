@@ -233,7 +233,7 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                             <span data-is-average={watchedValues.useAverage}>Definir média de milhas por passageiro</span>
                                         </div>
                                         {watchedValues.useAverage && (
-                                            <div style={{ display: "flex", width: "100%", gap: "10px" }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                                 <Box className={styles['average-input']}>
                                                     <input
                                                         type="text"
