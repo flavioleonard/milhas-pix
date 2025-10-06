@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import styles from "./Step1.module.css";
 import Image from "next/image";
 import AzulLogo from "../../assets/TudoAzul_resized.png"
@@ -19,6 +20,8 @@ interface Step1Data {
 }
 
 export const Step1 = ({ onNext }: Step1Props) => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -42,20 +45,31 @@ export const Step1 = ({ onNext }: Step1Props) => {
         { id: "tap", name: "TAP", logo: AirPortugal }
     ];
 
+    const selectedProgram = programs.find(p => p.id === watchedValues.selectedProgram);
+
     const onSubmit = (data: Step1Data) => {
         onNext(data);
     };
 
+    const handleProgramSelect = (programId: string) => {
+        setValue("selectedProgram", programId);
+        setIsDropdownOpen(false);
+    };
+
     return (
-        <div>
+        <div className={styles['mobile']}>
             <div className={styles['container']}>
                 <div className={styles['content']}>
                     <Box className={styles.box}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className={styles['header']}>
                                 <span className={styles['step-number']}>01.</span>
-                                <span>Escolha o programa de fidelidade</span>
+                                <span className={styles['desktop-text']}>Escolha o programa de fidelidade</span>
+                                <span className={styles['mobile-text']}>Escolha o programa</span>
+
                             </div>
+
+                            {/* Desktop version - programs grid */}
                             <div className={styles['programs-grid']}>
                                 {programs.map((program) => (
                                     <button
@@ -80,6 +94,20 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                     </button>
                                 ))}
                             </div>
+
+                            {/* Mobile version - selected program display */}
+                            <div className={styles['mobile-selected-program']}>
+                                <span className={styles['mobile-selected-program-text']}>
+                                    {selectedProgram?.name}
+                                </span>
+                                <Image
+                                    src={selectedProgram?.logo || AzulLogo}
+                                    alt={`${selectedProgram?.name} logo`}
+                                    className={styles['mobile-selected-program-logo']}
+                                    unoptimized
+                                />
+                            </div>
+
                             <div className={styles['form-row']}>
                                 <div className={styles['form-group']}>
                                     <label>Produto</label>
@@ -104,16 +132,60 @@ export const Step1 = ({ onNext }: Step1Props) => {
                             </div>
                         </form>
                     </Box>
+
+                    {/* Mobile version - program selector */}
+                    <div className={styles['mobile-program-selector']} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                        <span className={styles['mobile-program-selector-text']}>
+                            Selecione o programa
+                        </span>
+                        <span className={styles['mobile-program-selector-icon']}>
+                            {isDropdownOpen ? '−' : '+'}
+                        </span>
+
+                        {isDropdownOpen && (
+                            <div className={styles['mobile-program-dropdown']}>
+                                {programs.map((program) => (
+                                    <div
+                                        key={program.id}
+                                        className={styles['mobile-program-option']}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleProgramSelect(program.id);
+                                        }}
+                                    >
+                                        <Image
+                                            src={program.logo}
+                                            alt={`${program.name} logo`}
+                                            className={styles['mobile-program-option-logo']}
+                                            unoptimized
+                                        />
+                                        <span className={styles['mobile-program-option-text']}>
+                                            {program.name}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Desktop button section */}
                     <div className={styles['button-section']}>
                         <NextButton onClick={handleSubmit(onSubmit)} />
                     </div>
                 </div>
-                <div style={{ width: '248px' }}>
+
+                <div className={styles['sidebar']}>
                     <Box className={styles['sidebar-info']}>
                         <span className={styles['sidebar-title']}>Selecione o programa</span>
                         <span className={styles['sidebar-description']}>Escolha de qual programa de fidelidade você quer vender suas milhas. Use apenas contas em seu nome.</span>
                     </Box>
                 </div>
+            </div>
+
+            {/* Mobile footer */}
+            <div className={styles['mobile-footer']}>
+                <div className={styles['mobile-footer-step']}>1 de 4</div>
+                <NextButton onClick={handleSubmit(onSubmit)} />
             </div>
         </div>
     );

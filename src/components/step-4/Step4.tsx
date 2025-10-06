@@ -32,11 +32,16 @@ export const Step4 = ({ onViewOffers, allData }: Step4Props) => {
             <p className={styles['success-message']}>
                 Agora é só aguardar — assim que suas milhas forem vendidas, o valor será transferido direto para sua conta via Pix.
             </p>
-
             <button className={styles['btn-view-offers']} onClick={onViewOffers}>
                 Ver minhas ofertas →
             </button>
 
+            {/* Mobile footer */}
+            <div className={styles['mobile-footer']}>
+                <button className={styles['button-mobile']} onClick={onViewOffers}>
+                    Ver minhas ofertas →
+                </button>
+            </div>
         </Box>
     );
 };

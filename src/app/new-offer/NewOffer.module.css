@@ -7,3 +7,19 @@
   font-family: "DM Sans", sans-serif;
   gap: 30px;
 }
+
+@media (max-width: 768px) {
+  .new-offer-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .new-offer-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+  }
+}
