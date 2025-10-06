@@ -8,26 +8,7 @@ import { Step2 } from "../../components/step-2/Step2";
 import { Step3 } from "@/components/step-3/Step3";
 import { Step4 } from "@/components/step-4/Step4";
 import { useRouter } from "next/navigation";
-
-interface Step1Data {
-    selectedProgram: string;
-    product: string;
-    availableCPFs: string;
-}
-
-interface Step2Data {
-    paymentTiming: string;
-    milesQuantity: number;
-    pricePerMile: number;
-    useAverage: boolean;
-}
-
-interface Step3Data {
-    cpf: string;
-    loginAccess: string;
-    accessPassword: string;
-    authPhone: string;
-}
+import { Step1Data, Step2Data, Step3Data } from "@/types/StepData";
 
 export const NewOffer = () => {
     const [currentStep, setCurrentStep] = useState(1);
