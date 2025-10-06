@@ -8,6 +8,9 @@
   font-size: 16px;
 }
 
+.content {
+  width: 100%;
+}
 .container input {
   font-family: "DM Mono", sans-serif;
 }
