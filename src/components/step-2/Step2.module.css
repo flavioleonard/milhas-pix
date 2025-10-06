@@ -171,6 +171,11 @@
     width: 100%;
   }
 
+  .average-section {
+    display: flex;
+    gap: 10px;
+  }
+
   .average-miles span[data-is-average="false"] {
     color: #8f8f8f;
   }
@@ -538,6 +543,12 @@
     width: 100%;
   }
 
+  .average-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .average-miles span[data-is-average="false"] {
     color: #8f8f8f;
   }
@@ -671,9 +682,7 @@
     padding: 16px;
     border-top: 1px solid #e9ecef;
     background: white;
-    z-index: 100;
-    height: 60px;
-    box-sizing: border-box;
+    z-index: 10;
   }
 
   .mobile-footer-step {
@@ -686,20 +695,6 @@
   .mobile-footer-back {
     color: #2e3d50 !important;
     background-color: #e2e2e2 !important;
-    padding: 10px 20px;
-    border-radius: 44px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mobile-footer-next {
-    color: #ffffff !important;
-    background-color: #1e90ff !important;
     padding: 10px 20px;
     border-radius: 44px;
     border: none;

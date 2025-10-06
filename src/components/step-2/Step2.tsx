@@ -219,43 +219,43 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
                                             )}
                                         </div>
                                     </div>
-                                    <div className={styles['average']}>
-                                        <div className={styles['average-miles']}>
-                                            <Switch
-                                                checked={watchedValues.useAverage}
-                                                offColor="#E2E2E2"
-                                                onColor="#1e90ff"
-                                                uncheckedIcon={false}
-                                                checkedIcon={false}
-                                                handleDiameter={24}
-                                                onChange={(checked) => setValue("useAverage", checked)}
-                                            />
-                                            <span data-is-average={watchedValues.useAverage}>Definir média de milhas por passageiro</span>
-                                        </div>
-                                        {watchedValues.useAverage && (
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                                <Box className={styles['average-input']}>
-                                                    <input
-                                                        type="text"
-                                                        {...register("averageMiles", {
-                                                            validate: value => {
-                                                                if (watchedValues.useAverage && (!value || value <= 0)) {
-                                                                    return "Preencha todos os campos";
-                                                                }
-                                                                return true;
-                                                            }
-                                                        })}
-                                                        onChange={(e) => setValue("averageMiles", Number(e.target.value.replace(/\D/g, '')))}
-                                                        placeholder="0"
-                                                    />
-                                                </Box>
-                                                {errors.averageMiles && <span className={styles.error}>{errors.averageMiles.message}</span>}
-                                                <Box className={styles.tip}>
-                                                    <p>Melhor média para sua oferta: <span>27.800</span></p>
-                                                </Box>
-                                            </div>
-                                        )}
+                                </div>
+                                <div className={styles['average']}>
+                                    <div className={styles['average-miles']}>
+                                        <Switch
+                                            checked={watchedValues.useAverage}
+                                            offColor="#E2E2E2"
+                                            onColor="#1e90ff"
+                                            uncheckedIcon={false}
+                                            checkedIcon={false}
+                                            handleDiameter={24}
+                                            onChange={(checked) => setValue("useAverage", checked)}
+                                        />
+                                        <span data-is-average={watchedValues.useAverage}>Definir média de milhas por passageiro</span>
                                     </div>
+                                    {watchedValues.useAverage && (
+                                        <div className={styles['average-section']}>
+                                            <Box className={styles['average-input']}>
+                                                <input
+                                                    type="text"
+                                                    {...register("averageMiles", {
+                                                        validate: value => {
+                                                            if (watchedValues.useAverage && (!value || value <= 0)) {
+                                                                return "Preencha todos os campos";
+                                                            }
+                                                            return true;
+                                                        }
+                                                    })}
+                                                    onChange={(e) => setValue("averageMiles", Number(e.target.value.replace(/\D/g, '')))}
+                                                    placeholder="0"
+                                                />
+                                            </Box>
+                                            {errors.averageMiles && <span className={styles.error}>{errors.averageMiles.message}</span>}
+                                            <Box className={styles.tip}>
+                                                <p>Melhor média para sua oferta: <span>27.800</span></p>
+                                            </Box>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </form>
@@ -334,12 +334,20 @@ export const Step2 = ({ onNext, onBack }: Step2Props) => {
             {/* Mobile footer */}
             <div className={styles['mobile-footer']}>
                 <button className={styles['mobile-footer-back']} onClick={onBack}>
-                    Voltar
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clipPath="url(#clip0_4193_499)">
+                            <path d="M13.5 8L2.5 8" stroke="#2E3D50" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M7 12.5L2.5 8L7 3.5" stroke="#2E3D50" strokeLinecap="round" strokeLinejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_4193_499">
+                                <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(-180)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
                 </button>
                 <div className={styles['mobile-footer-step']}>2 de 4</div>
-                <button className={styles['mobile-footer-next']} onClick={handleSubmit(onSubmit)}>
-                    Prosseguir
-                </button>
+                <NextButton onClick={handleSubmit(onSubmit)} />
             </div>
         </div>
     );
