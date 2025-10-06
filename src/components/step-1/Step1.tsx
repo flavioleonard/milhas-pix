@@ -120,7 +120,7 @@ export const Step1 = ({ onNext }: Step1Props) => {
                                     </select>
                                 </div>
                                 <div className={styles['form-group']}>
-                                    <label>CPF's Disponíveis</label>
+                                    <label>CPF&apos;s Disponíveis</label>
                                     <select
                                         {...register("availableCPFs", { required: "CPF's disponíveis é obrigatório" })}
                                         className={styles['form-select']}
