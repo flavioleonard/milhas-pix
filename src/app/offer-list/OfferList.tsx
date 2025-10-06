@@ -166,19 +166,17 @@ export default function OfferList() {
                     ) : (
                         <div className={styles['offer-list']}>
                             {offers.map((offer) => (
-                                <div className={styles['offer-item']}>
+                                <div key={offer.offerId} className={styles['offer-item']}>
                                     <div className={styles['offer-header']}>
-                                        <div>
-                                            <div className={styles['program-icon']}>
-                                                <img
-                                                    src={getProgramIcon(offer.loyaltyProgram).src}
-                                                    alt={offer.loyaltyProgram}
-                                                    className={styles['program-icon']}
-                                                />
-                                            </div>
-                                            <div className="program-name">{offer.loyaltyProgram}</div>
+                                        <div className={styles['offer-header-left']}>
+                                            <img
+                                                src={getProgramIcon(offer.loyaltyProgram).src}
+                                                alt={offer.loyaltyProgram}
+                                                className={styles['program-icon']}
+                                            />
+                                            <span className={styles['program-name-mobile']}>{offer.loyaltyProgram}</span>
                                         </div>
-                                        <div>
+                                        <div className={styles['offer-header-right']}>
                                             <span className={`${styles['status-badge']} ${getStatusClass(offer.offerStatus)}`}>
                                                 ● {offer.offerStatus}
                                             </span>
@@ -186,20 +184,19 @@ export default function OfferList() {
                                         </div>
                                     </div>
                                     <div className={styles['offer-info']}>
-                                        <div>
-                                            <span>ID da oferta</span>
-                                            <span>{offer.offerId}</span>
+                                        <div className={styles['offer-info-row']}>
+                                            <span className={styles['offer-info-label']}>ID da oferta</span>
+                                            <span className={styles['offer-info-value']}>{offer.offerId}</span>
                                         </div>
-                                        <div>
-                                            <span>Login</span>
-                                            <span>{offer.accountLogin}</span>
+                                        <div className={styles['offer-info-row']}>
+                                            <span className={styles['offer-info-label']}>Login</span>
+                                            <span className={styles['offer-info-value']}>{offer.accountLogin}</span>
                                         </div>
-                                        <div>
-                                            <span>Milhas ofertadas</span>
-                                            <span>{offer.availableQuantity}</span>
+                                        <div className={styles['offer-info-row']}>
+                                            <span className={styles['offer-info-label']}>Milhas ofertadas</span>
+                                            <span className={styles['offer-info-value']}>{formatNumber(offer.availableQuantity)}</span>
                                         </div>
                                     </div>
-
                                 </div>
                             ))}
                         </div>

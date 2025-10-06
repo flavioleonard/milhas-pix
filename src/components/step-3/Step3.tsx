@@ -254,7 +254,7 @@ export const Step3 = ({ onNext, onBack, selectedProgram, totalValue }: Step3Prop
                         </defs>
                     </svg>
                 </button>
-                <div className={styles['mobile-footer-step']}>2 de 4</div>
+                <div className={styles['mobile-footer-step']}>3 de 4</div>
                 <NextButton onClick={handleSubmit(onSubmit)} />
             </div>
         </div>
