@@ -15,6 +15,7 @@ import { useState, useEffect } from "react"
 import type { Offer } from "@/types/Offer"
 import { ApiResponse } from "../api/offers/route";
 import { useRouter } from "next/navigation";
+import { off } from "process";
 
 export default function OfferList() {
     const [selectedFilter, setSelectedFilter] = useState<string>('');
@@ -156,6 +157,52 @@ export default function OfferList() {
                                 ))}
                             </tbody>
                         </table>
+                    )}
+                </div>
+                {/* mobile list */}
+                <div className={styles['box-data-mobile']}>
+                    {loading ? (
+                        <div className={styles.loading}>Carregando ofertas...</div>
+                    ) : (
+                        <div className={styles['offer-list']}>
+                            {offers.map((offer) => (
+                                <div className={styles['offer-item']}>
+                                    <div className={styles['offer-header']}>
+                                        <div>
+                                            <div className={styles['program-icon']}>
+                                                <img
+                                                    src={getProgramIcon(offer.loyaltyProgram).src}
+                                                    alt={offer.loyaltyProgram}
+                                                    className={styles['program-icon']}
+                                                />
+                                            </div>
+                                            <div className="program-name">{offer.loyaltyProgram}</div>
+                                        </div>
+                                        <div>
+                                            <span className={`${styles['status-badge']} ${getStatusClass(offer.offerStatus)}`}>
+                                                ● {offer.offerStatus}
+                                            </span>
+                                            <span className={styles['offer-date']}>{formatDate(offer.createdAt)}</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles['offer-info']}>
+                                        <div>
+                                            <span>ID da oferta</span>
+                                            <span>{offer.offerId}</span>
+                                        </div>
+                                        <div>
+                                            <span>Login</span>
+                                            <span>{offer.accountLogin}</span>
+                                        </div>
+                                        <div>
+                                            <span>Milhas ofertadas</span>
+                                            <span>{offer.availableQuantity}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
             </Box>

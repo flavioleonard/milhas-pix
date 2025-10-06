@@ -146,3 +146,13 @@
   background-color: #f8d7da;
   color: #721c24;
 }
+.box-data-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .box-data,
+  .offers-title {
+    display: none;
+  }
+}
