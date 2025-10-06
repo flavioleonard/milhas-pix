@@ -3,11 +3,47 @@ import styles from "./Step4.module.css";
 import Image from "next/image";
 import CongratulationsIcon from "../../assets/Congratulations.svg"
 
-interface Step4Props {
-    onViewOffers: () => void;
+interface Step1Data {
+    selectedProgram: string;
+    product: string;
+    availableCPFs: string;
 }
 
-export const Step4 = ({ onViewOffers }: Step4Props) => {
+interface Step2Data {
+    paymentTiming: string;
+    milesQuantity: number;
+    pricePerMile: number;
+    useAverage: boolean;
+    averageMiles?: number;
+}
+
+interface Step3Data {
+    cpf: string;
+    loginAccess: string;
+    accessPassword: string;
+    authPhone: string;
+}
+
+interface AllData {
+    step1: Step1Data | null;
+    step2: Step2Data | null;
+    step3: Step3Data | null;
+}
+
+interface Step4Props {
+    onViewOffers: () => void;
+    allData: AllData;
+}
+
+export const Step4 = ({ onViewOffers, allData }: Step4Props) => {
+    const formData = {
+        ...allData.step1,
+        ...allData.step2,
+        ...allData.step3,
+    };
+
+    console.log("Dados preenchidos: ", formData);
+
     return (
         <Box className={styles['container']}>
 

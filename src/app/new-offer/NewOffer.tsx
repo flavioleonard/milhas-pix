@@ -107,7 +107,14 @@ export const NewOffer = () => {
                     selectedProgram={step1Data?.selectedProgram || 'tudoazul'}
                 />;
             case 4:
-                return <Step4 onViewOffers={() => router.push('./offer-list')} />;
+                return <Step4
+                    onViewOffers={() => router.push('./offer-list')}
+                    allData={{
+                        step1: step1Data,
+                        step2: step2Data,
+                        step3: step3Data
+                    }}
+                />;
             default:
                 return <div>Passo não encontrado</div>;
         }
